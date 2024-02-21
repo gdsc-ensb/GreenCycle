@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenCycle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAldANfMZcFI1i6grgVnpP1HBCkn4pDvSI"></script>
+  </head>
+  <body>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <div class="bg-image vw-100 vh-100 position-fixed"></div>
+
+    <div class="side-navbar text-dark" data-leftnav="close" id="side-navbar">
+      <ul>
+        <li class="active-nav">
+          <a href="./home.html" id="homelnav">Home</a>
+        </li>
+        <li>
+          <a href="./profile.html" id="skillslnav">Profile</a>
+        </li>
+        <li>
+          <a href="./call-delivery.html" id="aboutlnav">Call Delivery</a>
+        </li>
+        <li>
+          <a href="./index.html" class="text-danger" id="projectslnav"
+            >Log Out</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="container d-flex flex-column align-items-center pt-3">
+      <div
+        class="logo-nav w-100 ps-2 d-flex justify-content-between align-items-center"
+      >
+        <img class="h-100" src="./pictures/logo_dark.png" alt="logo" />
+        <div class="d-flex me-3 gap-2" id="nav-list">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="navbar-svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="d-flex flex-column mt-3 w-100 gap-2">
+        <h2 class="h2 fw-bold m-0">Service:</h2>
+        <div id="serviceCarousel" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="./pictures/alominum.jpg"
+                class="d-block w-100"
+                alt="service picture"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="./pictures/alominum.jpg"
+                class="d-block w-100"
+                alt="service picture"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="./pictures/alominum.jpg"
+                class="d-block w-100"
+                alt="service picture"
+              />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#serviceCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#serviceCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <div class="d-flex flex-column gap-2 rounded-2 text-bg-light py-2 px-3">
+          <div class="d-flex flex-column justify-content-between gap-1">
+            <div class="fw-bold">Material type:</div>
+            <div class="align-self-end text-end">metal</div>
+          </div>
+          <div class="d-flex flex-column justify-content-between gap-1">
+            <div class="fw-bold">Material sous type:</div>
+            <div class="align-self-end text-end">Alominum</div>
+          </div>
+          <div class="d-flex flex-column justify-content-between gap-1">
+            <div class="fw-bold">Weight:</div>
+            <div class="align-self-end text-end">200 Kg</div>
+          </div>
+          <div class="d-flex flex-column justify-content-between gap-1">
+            <div class="fw-bold">Address:</div>
+            <div class="align-self-end text-end">Bordj Bou Arreridj</div>
+          </div>
+          <div class="d-flex flex-column justify-content-between gap-1">
+            <div class="fw-bold">Notes:</div>
+            <div class="align-self-end text-end">
+              Please handle the aluminum waste with extreme caution. Some cans, especially when crushed, may have sharp edges that can cause cuts or injuries
+            </div>
+          </div>
+        </div>
+        <div class="map-container w-100">
+          <div id="map"></div>
+        </div>
+        <div class="d-flex gap-2">
+          <button
+            class="btn btn-secondary w-50"
+            data-bs-toggle="modal"
+            data-bs-target="#serviceRefuseConfirmed"
+            data-role="open"
+          >
+            Refuse
+          </button>
+          <button
+            class="btn btn-primary w-50"
+            data-bs-toggle="modal"
+            data-bs-target="#serviceAcceptConfirmed"
+            data-role="open"
+          >
+            Accept
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="copyright justify-content-center d-flex w-100 my-2">
+      all rights reserved for &copy; GreenCycle
+    </div>
+
+    <!-- modals -->
+    <div
+      class="modal fade"
+      id="serviceRefuseConfirmed"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="serviceRefuseConfirmedLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-body d-flex flex-column gap-4">
+            <div class="d-flex flex-column gap-2">
+              <p class="p-0 m-0">
+                You are going to refuse the materials provided for you, could
+                you please tell us the reason?
+              </p>
+              <div class="form-floating">
+                <select
+                  class="form-select"
+                  id="service-problem"
+                  aria-label="Floating label select"
+                >
+                  <option value="1" selected>Location problem</option>
+                  <option value="2">Material type problem</option>
+                  <option value="3">Other</option>
+                </select>
+                <label for="service-problem">Problem</label>
+                <div
+                  class="small d-flex align-items-center d-none"
+                  id="service-problem-error"
+                >
+                  <svg
+                    class="inline-svg me-1"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                    />
+                  </svg>
+                  <p class="m-0" data-type="form-error-placeholder"></p>
+                </div>
+              </div>
+              <div class="form-floating">
+                <textarea
+                  class="form-control mdTextArea"
+                  placeholder="Description"
+                  maxlength="255"
+                  id="refuseNote"
+                ></textarea>
+                <label for="refuseNote">Description</label>
+                <div
+                  class="small d-flex align-items-center d-none"
+                  id="service-desc-error"
+                >
+                  <svg
+                    class="inline-svg me-1"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                    />
+                  </svg>
+                  <p class="m-0" data-type="form-error-placeholder"></p>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end gap-2">
+              <div
+                class="btn btn-secondary w-25"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                Cancel
+              </div>
+              <div id="confirm-refuse-btn" class="btn btn-danger w-75">
+                Refuse
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="serviceAcceptConfirmed"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="serviceAcceptConfirmedLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-body d-flex flex-column gap-4">
+            <div class="d-flex flex-column gap-2">
+              <p class="p-0 m-0">
+                Please Select the estimated time within you can take the
+                materials from
+                <span data-type="provider-name"> Akram Bengueddoudj</span> in
+                order to notify him
+              </p>
+              <div class="form-floating">
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="service-final-datetime"
+                  placeholder="Estimated Date & Time"
+                />
+                <label for="service-final-datetime"
+                  >Estimated Date & Time</label
+                >
+                <div
+                  class="small d-flex align-items-center d-none"
+                  id="service-time-error"
+                >
+                  <svg
+                    class="inline-svg me-1"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                    />
+                  </svg>
+                  <p class="m-0" data-type="form-error-placeholder"></p>
+                </div>
+              </div>
+              <div class="form-floating">
+                <textarea
+                  class="form-control mdTextArea"
+                  placeholder="Note"
+                  maxlength="255"
+                  id="acceptNote"
+                ></textarea>
+                <label for="acceptNote">Note</label>
+                <div
+                  class="small d-flex align-items-center d-none"
+                  id="service-note-error"
+                >
+                  <svg
+                    class="inline-svg me-1"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                  >
+                    <path
+                      d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                    />
+                  </svg>
+                  <p class="m-0" data-type="form-error-placeholder"></p>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end gap-2">
+              <div
+                class="btn btn-secondary w-25"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                Cancel
+              </div>
+              <div id="confirm-accept-btn" class="btn btn-primary w-75">
+                Accept
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

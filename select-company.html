@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenCycle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAldANfMZcFI1i6grgVnpP1HBCkn4pDvSI"></script>
+  </head>
+  <body>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <div class="bg-image vw-100 vh-100 position-fixed"></div>
+
+    <div class="side-navbar text-dark" data-leftnav="close" id="side-navbar">
+      <ul>
+        <li class="active-nav">
+          <a href="./home.html" id="homelnav">Home</a>
+        </li>
+        <li>
+          <a href="./profile.html" id="skillslnav">Profile</a>
+        </li>
+        <li>
+          <a href="./call-delivery.html" id="aboutlnav">Call Delivery</a>
+        </li>
+        <li>
+          <a href="./index.html" class="text-danger" id="projectslnav"
+            >Log Out</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="container d-flex flex-column align-items-center pt-3">
+      <div
+        class="logo-nav w-100 ps-2 d-flex justify-content-between align-items-center"
+      >
+        <img class="h-100" src="./pictures/logo_dark.png" alt="logo" />
+        <div class="d-flex me-3 gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="navbar-svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="d-flex flex-column mt-3 w-100 gap-2">
+        <h2 class="h2 m-0" id="select-company-title">Select Company:</h2>
+        <div class="map-container w-100"><div id="map"></div></div>
+        <div class="form-floating">
+          <select
+            class="form-select"
+            id="delivery-company"
+            aria-label="Floating label select"
+          >
+            <option value="1" selected>
+              <span>01</span> - <span>GreenCycle Solutions</span> -
+              <span>Algiers</span>
+            </option>
+            <option value="2">
+              <span>02</span> - <span>Eco Renewal Services</span> -
+              <span>Algiers</span>
+            </option>
+            <option value="3">
+              <span>03</span> - <span>Pure Earth Recycling</span> -
+              <span>Algiers</span>
+            </option>
+
+            <!-- Oran (Oran Province) -->
+            <option value="4">
+              <span>04</span> - <span>EcoHarbor Recyclers</span> -
+              <span>Oran</span>
+            </option>
+            <option value="5">
+              <span>05</span> - <span>OranGreen Waste Solutions</span> -
+              <span>Oran</span>
+            </option>
+            <option value="6">
+              <span>06</span> - <span>RenewCycle Industries</span> -
+              <span>Oran</span>
+            </option>
+
+            <!-- Constantine (Constantine Province) -->
+            <option value="7">
+              <span>07</span> - <span>GreenInfinite Recycling Co.</span> -
+              <span>Constantine</span>
+            </option>
+            <option value="8">
+              <span>08</span> - <span>Constant Renewables</span> -
+              <span>Constantine</span>
+            </option>
+            <option value="9">
+              <span>09</span> - <span>EcoCatalyst Services</span> -
+              <span>Constantine</span>
+            </option>
+
+            <!-- Annaba (Annaba Province) -->
+            <option value="10">
+              <span>10</span> - <span>AquaReclaim Annaba</span> -
+              <span>Annaba</span>
+            </option>
+            <option value="11">
+              <span>11</span> - <span>OceanGreen Eco Solutions</span> -
+              <span>Annaba</span>
+            </option>
+            <option value="12">
+              <span>12</span> - <span>RenewEarth Annaba</span> -
+              <span>Annaba</span>
+            </option>
+
+            <!-- Tlemcen (Tlemcen Province) -->
+            <option value="13">
+              <span>13</span> - <span>Tlemcen Renewal Services</span> -
+              <span>Tlemcen</span>
+            </option>
+            <option value="14">
+              <span>14</span> - <span>EcoHarmony Recyclables</span> -
+              <span>Tlemcen</span>
+            </option>
+            <option value="15">
+              <span>15</span> - <span>GreenWave Tlemcen</span> -
+              <span>Tlemcen</span>
+            </option>
+
+            <!-- Setif (Setif Province) -->
+            <option value="16">
+              <span>16</span> - <span>Setif Eco Renewables</span> -
+              <span>Setif</span>
+            </option>
+            <option value="17">
+              <span>17</span> - <span>RenewSetif Recycling Co.</span> -
+              <span>Setif</span>
+            </option>
+            <option value="18">
+              <span>18</span> - <span>GreenHorizon Solutions</span> -
+              <span>Setif</span>
+            </option>
+          </select>
+          <label for="delivery-company">Company</label>
+        </div>
+        <div class="d-flex flex-column gap-2 w-100 rounded-2 text-bg-light p-3">
+          <div class="d-flex gap-2">
+            <span class="w-25 fw-bold">Name:</span>
+            <span id="company-name">GreenCycle Solutions</span>
+          </div>
+          <div class="d-flex gap-2">
+            <span class="w-25 fw-bold">Address:</span>
+            <span id="company-address">Algiers - El-Casbah</span>
+          </div>
+          <div class="d-flex gap-2">
+            <span class="w-25 fw-bold">Phone:</span>
+            <span id="company-phone">+213666666666</span>
+          </div>
+          <div class="d-flex gap-2">
+            <span class="w-25 fw-bold">Email:</span>
+            <span id="company-email">GreeSol.contact@gmail.com</span>
+          </div>
+          <div class="d-flex gap-2">
+            <span class="w-25 fw-bold">Time:</span>
+            <div class="d-flex flex-column gap-1">
+              <div class="d-flex gap-1">
+                <div
+                  id="company-day-Sun"
+                  data-role="company-day"
+                  class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-success"
+                >
+                  S
+                </div>
+                <div
+                  id="company-day-Mon"
+                  data-role="company-day"
+                  class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-success"
+                >
+                  M
+                </div>
+                <div
+                  id="company-day-Tue"
+                  data-role="company-day"
+                  class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-secondary"
+                >
+                  T
+                </div>
+                <div
+                  id="company-day-Wed"
+                  data-role="company-day"
+                  class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-success"
+                >
+                  W
+                </div>
+                <div
+                  id="company-day-Thu"
+                  data-role="company-day"
+                  class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-secondary"
+                >
+                  T
+                </div>
+                <div
+                  id="company-day-Fri"
+                  data-role="company-day"
+                  class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-secondary"
+                >
+                  F
+                </div>
+                <div
+                  id="company-day-Sat"
+                  data-role="company-day"
+                  class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-success"
+                >
+                  S
+                </div>
+              </div>
+              <div class="d-flex gap-1" id="company-time">
+                <span>08:00</span><span>to</span><span>18:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn btn-primary w-100"
+          id="confirm-delivery-btn"
+          data-bs-toggle="modal"
+          data-bs-target="#callDeliveryConfirmed"
+          data-role="open"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+    <div class="copyright justify-content-center d-flex w-100 my-2">
+      all rights reserved for &copy; GreenCycle
+    </div>
+
+    <!-- modals -->
+    <div
+      class="modal fade"
+      id="callDeliveryConfirmed"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="callDeliveryConfirmedLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-body d-flex flex-column gap-4">
+            <div>
+              Your Demand of the delivery was sent to the company, You can see
+              the details of the service in your profile!
+            </div>
+            <div class="d-flex justify-content-end gap-2">
+              <div id="confirm-delivery-done-btn" class="btn btn-success px-4">
+                Done
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

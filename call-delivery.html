@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenCycle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAldANfMZcFI1i6grgVnpP1HBCkn4pDvSI"></script>
+  </head>
+  <body>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <div class="bg-image vw-100 vh-100 position-fixed"></div>
+
+    <div class="side-navbar text-dark" data-leftnav="close" id="side-navbar">
+      <ul>
+        <li class="active-nav">
+          <a href="./home.html" id="homelnav">Home</a>
+        </li>
+        <li>
+          <a href="./profile.html" id="skillslnav">Profile</a>
+        </li>
+        <li>
+          <a href="./call-delivery.html" id="aboutlnav">Call Delivery</a>
+        </li>
+        <li>
+          <a href="./index.html" class="text-danger" id="projectslnav"
+            >Log Out</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="container d-flex flex-column align-items-center pt-3">
+      <div
+        class="logo-nav w-100 ps-2 d-flex justify-content-between align-items-center"
+      >
+        <img class="h-100" src="./pictures/logo_dark.png" alt="logo" />
+        <div class="d-flex me-3 gap-2" id="nav-list">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="navbar-svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="d-flex flex-column mt-3 w-100 gap-2">
+        <h2 class="h2 m-0 fw-bold w-100" id="call-delivery-title">
+          Offering Materials:
+        </h2>
+        <div class="form-floating">
+          <select
+            class="form-select"
+            id="material-type"
+            aria-label="Floating label select "
+          >
+            <option value="0" selected>Select the type of material</option>
+            <option value="paper">Paper</option>
+            <option value="plastic">Plastic</option>
+            <option value="glass">Glass</option>
+            <option value="metal">Metal</option>
+            <option value="textiles">Textiles</option>
+            <option value="electronics">Electronics</option>
+          </select>
+          <label for="material-type">Material Type</label>
+          <div
+            class="small d-flex align-items-center d-none"
+            id="delivery-material-type-error"
+          >
+            <svg
+              class="inline-svg me-1"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path
+                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+              />
+            </svg>
+            <p class="m-0" data-type="form-error-placeholder"></p>
+          </div>
+        </div>
+        <div class="form-floating">
+          <select
+            class="form-select"
+            id="material-sub-type"
+            aria-label="Floating label select "
+          >
+            <option selected>Select the type of material first</option>
+          </select>
+          <label for="material-sub-type">Material Sous Type</label>
+        </div>
+        <div class="d-flex gap-1">
+          <div class="form-floating w-75">
+            <input
+              type="number"
+              class="form-control"
+              id="material-weight"
+              placeholder="Weight"
+            />
+            <label for="material-weight">Weight</label>
+          </div>
+          <div class="form-floating w-25">
+            <select
+              class="form-select"
+              id="material-type"
+              aria-label="Floating label select example"
+            >
+              <option selected value="Kg">Kg</option>
+              <option value="Ton">Tonne</option>
+            </select>
+            <label for="material-type">Unit</label>
+          </div>
+        </div>
+        <div class="d-flex gap-2">
+          <div class="form-floating w-100">
+            <input
+              type="text"
+              class="form-control"
+              id="location"
+              placeholder="Location"
+            />
+            <label for="location">Location</label>
+            <div
+              class="small d-flex align-items-center d-none"
+              id="delivery-location-error"
+            >
+              <svg
+                class="inline-svg me-1"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                />
+              </svg>
+              <p class="m-0" data-type="form-error-placeholder"></p>
+            </div>
+          </div>
+          <div
+            class="pe-2 d-flex justify-content-center align-items-center"
+            data-bs-toggle="modal"
+            data-bs-target="#select-location"
+            data-role="open"
+          >
+            <svg
+              class="map-location-svg"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 576 512"
+            >
+              <path
+                d="M408 120c0 54.6-73.1 151.9-105.2 192c-7.7 9.6-22 9.6-29.6 0C241.1 271.9 168 174.6 168 120C168 53.7 221.7 0 288 0s120 53.7 120 120zm8 80.4c3.5-6.9 6.7-13.8 9.6-20.6c.5-1.2 1-2.5 1.5-3.7l116-46.4C558.9 123.4 576 135 576 152V422.8c0 9.8-6 18.6-15.1 22.3L416 503V200.4zM137.6 138.3c2.4 14.1 7.2 28.3 12.8 41.5c2.9 6.8 6.1 13.7 9.6 20.6V451.8L32.9 502.7C17.1 509 0 497.4 0 480.4V209.6c0-9.8 6-18.6 15.1-22.3l122.6-49zM327.8 332c13.9-17.4 35.7-45.7 56.2-77V504.3L192 449.4V255c20.5 31.3 42.3 59.6 56.2 77c20.5 25.6 59.1 25.6 79.6 0zM288 152a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="form-floating">
+          <textarea
+            class="form-control mdTextArea"
+            placeholder="Leave a note here"
+            id="note-for-delivery"
+          ></textarea>
+          <label for="note-for-delivery">Notes</label>
+        </div>
+        <div class="d-flex w-100 position-relative">
+          <label
+            class="d-flex flex-column justify-content-center align-items-center py-4 text-white w-100"
+            for="picsForDelivery"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              class="bi bi-images"
+              viewBox="0 0 16 16"
+            >
+              <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+              <path
+                d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10"
+              />
+            </svg>
+            <span class="small fw-bold">Add pictures</span>
+          </label>
+          <div class="position-absolute bg-gallery rounded-2">
+            <input
+              type="file"
+              id="picsForDelivery"
+              accept="image/*"
+              multiple
+              class="d-none"
+            />
+          </div>
+        </div>
+        <div
+          id="picsForDeliveryContainer"
+          class="w-100 row gy-2 align-items-center m-0"
+        ></div>
+        <div class="d-flex mt-3 w-100">
+          <button id="passToSelectCompany" class="btn btn-primary w-100">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="copyright justify-content-center d-flex w-100 my-2">
+      all rights reserved for &copy; GreenCycle
+    </div>
+
+    <!-- modals -->
+    <div
+      class="modal fade"
+      id="select-location"
+      tabindex="-1"
+      aria-labelledby="select-locationLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold" id="serviceType2Label">
+              Select Your location
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body d-flex flex-column gap-2">
+            <div class="map-container w-100"><div id="map"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

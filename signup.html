@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenCycle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <div class="bg-image vw-100 vh-100 position-fixed"></div>
+    <div class="container d-flex flex-column align-items-center pt-3">
+      <div
+        class="logo-nav w-100 ps-2 d-flex justify-content-between align-items-center"
+      >
+        <img class="h-100" src="./pictures/logo_dark.png" alt="logo" />
+        <div class="d-flex me-3 gap-2"></div>
+      </div>
+      <div class="d-flex flex-column gap-3 w-100 mt-3">
+        <h2 class="h1 ps-3 fw-bold m-0">Sign Up</h2>
+        <div class="w-100">
+          <p class="text-justify m-0">
+            Join the green wave! Sign up and start your journey towards a cleaner Algeria.
+          </p>
+        </div>
+        <div class="w-100 d-flex flex-column gap-2">
+          <div class="w-100 d-flex gap-2">
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control"
+                id="signup-first-name"
+                placeholder="First Name"
+              />
+              <label for="signup-first-name">First Name</label>
+              <div
+                class="small d-flex align-items-center d-none"
+                id="signup-fname-error"
+              >
+                <svg
+                  class="inline-svg me-1"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                  />
+                </svg>
+                <p class="m-0" data-type="form-error-placeholder"></p>
+              </div>
+            </div>
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control"
+                id="signup-last-name"
+                placeholder="Last Name"
+              />
+              <label for="signup-last-name">Last Name</label>
+              <div
+                class="small d-flex align-items-center d-none"
+                id="signup-lname-error"
+              >
+                <svg
+                  class="inline-svg me-1"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                  />
+                </svg>
+                <p class="m-0" data-type="form-error-placeholder"></p>
+              </div>
+            </div>
+          </div>
+          <div class="form-floating">
+            <input
+              type="email"
+              class="form-control"
+              id="signup-email"
+              placeholder="Email Address"
+            />
+            <label for="signup-email">Email Address</label>
+            <div
+              class="small d-flex align-items-center d-none"
+              id="signup-email-error"
+            >
+              <svg
+                class="inline-svg me-1"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                />
+              </svg>
+              <p class="m-0" data-type="form-error-placeholder"></p>
+            </div>
+          </div>
+          <div class="form-floating">
+            <input
+              type="password"
+              class="form-control"
+              id="signup-password"
+              placeholder="Password"
+            />
+            <label for="signup-password">Password</label>
+            <div
+              class="small d-flex align-items-center d-none"
+              id="signup-password-error"
+            >
+              <svg
+                class="inline-svg me-1"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                />
+              </svg>
+              <p class="m-0" data-type="form-error-placeholder"></p>
+            </div>
+          </div>
+          <div class="form-floating">
+            <input
+              type="password"
+              class="form-control"
+              id="signup-repassword"
+              placeholder="Re-Password"
+            />
+            <label for="signup-repassword">Re-Password</label>
+            <div
+              class="small d-flex align-items-center d-none"
+              id="signup-repassword-error"
+            >
+              <svg
+                class="inline-svg me-1"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                />
+              </svg>
+              <p class="m-0" data-type="form-error-placeholder"></p>
+            </div>
+          </div>
+        </div>
+        <div class="w-100 d-flex justify-content-center">
+          <input
+            type="button"
+            value="Next"
+            id="signup-signup-btn"
+            class="btn btn-primary rounded-pill w-75"
+          />
+        </div>
+        <div class="d-flex w-100 gap-3 align-items-center">
+          <hr class="w-100" />
+          <span>Or</span>
+          <hr class="w-100" />
+        </div>
+        <div class="d-flex w-100">
+          <a
+            href="./signup-company.html"
+            class="btn btn-outline-dark fw-bold w-100"
+          >
+            Try GreenCycle for companies
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright justify-content-center d-flex w-100 my-2">
+      all rights reserved for &copy; GreenCycle
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenCycle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <div class="bg-image vw-100 vh-100 position-fixed"></div>
+
+    <div class="side-navbar text-dark" data-leftnav="close" id="side-navbar">
+      <ul>
+        <li>
+          <a href="./home.html" id="homelnav">Home</a>
+        </li>
+        <li class="active-nav">
+          <a href="./profile.html" id="skillslnav">Profile</a>
+        </li>
+        <li>
+          <a href="./call-delivery.html" id="aboutlnav">Call Delivery</a>
+        </li>
+        <li>
+          <a href="./index.html" class="text-danger" id="projectslnav"
+            >Log Out</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="container d-flex flex-column align-items-center pt-3">
+      <div
+        class="logo-nav w-100 ps-2 d-flex justify-content-between align-items-center"
+      >
+        <img class="h-100" src="./pictures/logo_dark.png" alt="logo" />
+        <div class="d-flex me-3 gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="navbar-svg"
+            id="nav-list"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="d-flex flex-column gap-2 mt-3 w-100">
+        <div class="d-flex w-100 justify-content-center position-relative">
+          <img
+            id="profile-picture"
+            src="./pictures/Iman Gadzhi.jpeg"
+            alt="profile picture"
+            class="profile-picture rounded-circle"
+          />
+          <label
+            for="edit-profile-picture-input"
+            class="profile-picture-pen position-absolute bottom-0 rounded-circle d-flex justify-content-center align-items-center p-1"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-75"
+              viewBox="0 0 512 512"
+            >
+              <path
+                d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"
+              />
+            </svg>
+          </label>
+          <input
+            type="file"
+            id="edit-profile-picture-input"
+            accept="image/*"
+            class="d-none"
+          />
+        </div>
+        <div class="w-100 d-flex align-items-center flex-column gap-1">
+          <div class="d-flex gap-2">
+            <h2 class="h2 m-0" id="current-fullname1">Akram Bengueddoudj</h2>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="profile-picture-pen-svg"
+              viewBox="0 0 512 512"
+              data-bs-toggle="modal"
+              data-bs-target="#updateName"
+              data-role="open"
+            >
+              <path
+                d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"
+              />
+            </svg>
+          </div>
+          <div class="d-flex gap-2">
+            <h5 class="h5 small m-0">@ <span>Akram.bengueddoudj</span></h5>
+          </div>
+        </div>
+        <div class="d-flex w-100 flex-column gap-1 mt-3">
+          <h2 class="h2 m-0 fw-bold">Bio</h2>
+          <div class="form-floating">
+            <textarea
+              class="form-control mdTextArea"
+              placeholder="Bio"
+              id="bioEdit"
+              maxlength="255"
+            >
+Hi everyone! My name is Akram Bengueddoudj and I'm a 20-year-old student from Bordj Bou Arreridj, Algeria. Since I was young, I've been passionate about protecting our environment and living sustainably. That's why I joined GreenCycle – it allows me to connect with other eco-warriors, make recycling easier, and actively contribute to a cleaner Algeria.</textarea>
+            <label for="bioEdit">Bio</label>
+          </div>
+          <h2 class="h2 m-0 fw-bold">Settings</h2>
+          <div class="accordion" id="settingsAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#personalInfoCollapse"
+                  aria-expanded="true"
+                  aria-controls="personalInfoCollapse"
+                >
+                  Personal Information
+                </button>
+              </h2>
+              <div
+                id="personalInfoCollapse"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#settingsAccordion"
+              >
+                <div class="accordion-body d-flex flex-column gap-2">
+                  <div class="d-flex flex-column w-100 justify-content-between">
+                    <div class="fw-bold">Full name:</div>
+                    <div class="align-self-end text-end" id="current-fullname2">
+                      Akram Bengueddoudj
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column w-100 justify-content-between">
+                    <div class="fw-bold">Username:</div>
+                    <div class="align-self-end text-end">
+                      @ <span>Akram.bengueddoudj</span>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column w-100 justify-content-between">
+                    <div class="fw-bold">Email:</div>
+                    <div class="align-self-end text-truncate w-100 text-end">
+                      bengueddoudjakram@gmail.com
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column w-100 justify-content-between">
+                    <div class="fw-bold">Phone number:</div>
+                    <div class="align-self-end d-flex gap-2">
+                      <span class="text-end" id="current-phone"
+                        >0655784664</span
+                      >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="profile-number-pen-svg"
+                        viewBox="0 0 512 512"
+                        data-bs-toggle="modal"
+                        data-bs-target="#updatePhone"
+                        data-role="open"
+                      >
+                        <path
+                          d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column w-100 justify-content-between">
+                    <div class="fw-bold">Birth date:</div>
+                    <div class="align-self-end d-flex gap-2">
+                      <span class="text-end" id="current-birthdate"
+                        >08-06-2004</span
+                      >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="profile-number-pen-svg"
+                        viewBox="0 0 512 512"
+                        data-bs-toggle="modal"
+                        data-bs-target="#updateBirthdate"
+                        data-role="open"
+                      >
+                        <path
+                          d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column w-100 justify-content-between">
+                    <div class="fw-bold">Address:</div>
+                    <div class="align-self-end d-flex gap-2">
+                      <span class="text-end" id="current-address"
+                        >Bordj Zemmoura - Bordj Bou Arreridj
+                      </span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="profile-number-pen-svg"
+                        viewBox="0 0 512 512"
+                        data-bs-toggle="modal"
+                        data-bs-target="#updateAddress"
+                        data-role="open"
+                      >
+                        <path
+                          d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#securetyCollapse"
+                  aria-expanded="true"
+                  aria-controls="securetyCollapse"
+                >
+                  Securety
+                </button>
+              </h2>
+              <div
+                id="securetyCollapse"
+                class="accordion-collapse collapse"
+                data-bs-parent="#settingsAccordion"
+              >
+                <div class="accordion-body d-flex flex-column gap-3">
+                  <a
+                    href="./new-password.html"
+                    class="d-flex btn p-0 justify-content-between"
+                  >
+                    <div class="fw-bold">Change your password</div>
+                    <span
+                      ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-caret-right"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M6 12.796V3.204L11.481 8zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753"
+                        />
+                      </svg>
+                    </span>
+                  </a>
+                  <div class="d-flex flex-column gap-1">
+                    <span class="fw-bold">Where you are logged in</span>
+                    <div class="d-flex flex-column">
+                      <div class="d-flex justify-content-between">
+                        <span>Galaxy A02</span>
+                        <span>Constantine</span>
+                      </div>
+                      <div class="align-self-end small">09-02-2024</div>
+                    </div>
+                    <hr class="m-0 p-0" />
+                    <div class="d-flex flex-column">
+                      <div class="d-flex justify-content-between">
+                        <span>ACER Laptop</span>
+                        <span>Constantine</span>
+                      </div>
+                      <div class="align-self-end small">12-02-2024</div>
+                    </div>
+                    <button
+                      class="btn btn-danger align-self-center w-75"
+                      id="logout-all"
+                      data-bs-toggle="modal"
+                      data-bs-target="#logoutAll"
+                      data-role="open"
+                    >
+                      Log out from all devices
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#preferencesCollapse"
+                  aria-expanded="true"
+                  aria-controls="preferencesCollapse"
+                >
+                  Preferences
+                </button>
+              </h2>
+              <div
+                id="preferencesCollapse"
+                class="accordion-collapse collapse"
+                data-bs-parent="#settingsAccordion"
+              >
+                <div class="accordion-body d-flex flex-column gap-2">
+                  <div class="form-check form-switch">
+                    <label class="form-check-label" for="darkModeSwitch"
+                      >Dark Mode</label
+                    >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="darkModeSwitch"
+                    />
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="">Language</div>
+                    <select
+                      class="form-select w-auto"
+                      aria-label="Default select"
+                    >
+                      <option selected value="en">English</option>
+                      <option value="ar">Arabic</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#accountManagementCollapse"
+                  aria-expanded="true"
+                  aria-controls="accountManagementCollapse"
+                >
+                  Account Management
+                </button>
+              </h2>
+              <div
+                id="accountManagementCollapse"
+                class="accordion-collapse collapse"
+                data-bs-parent="#settingsAccordion"
+              >
+                <div class="accordion-body d-flex flex-column gap-2">
+                  <button
+                    class="btn btn-outline-danger w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#desactivateAccount"
+                    data-role="open"
+                  >
+                    Desactivate the account
+                  </button>
+                  <button
+                    class="btn btn-danger w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#removeAccount"
+                    data-role="open"
+                  >
+                    Remove the account
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="btn btn-primary w-100 mt-3"
+            id="save-changes-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#saveChanges"
+            data-role="open"
+            disabled
+          >
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="copyright justify-content-center d-flex w-100 my-2">
+      all rights reserved for &copy; GreenCycle
+    </div>
+
+    <!-- modals -->
+    <div
+      class="modal fade"
+      id="updateName"
+      tabindex="-1"
+      aria-labelledby="updateNameLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold" id="serviceType2Label">
+              Update Name
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body d-flex flex-column gap-2">
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control"
+                id="update-firstname"
+                placeholder="First Name"
+                value="Akram"
+              />
+              <label for="update-firstname">First Name</label>
+              <div
+                class="small d-flex align-items-center d-none"
+                id="editprofile-fname-error"
+              >
+                <svg
+                  class="inline-svg me-1"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                  />
+                </svg>
+                <p class="m-0" data-type="form-error-placeholder"></p>
+              </div>
+            </div>
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control"
+                id="update-lastname"
+                placeholder="Last Name"
+                value="Bengueddoudj"
+              />
+              <label for="update-lastname">Last Name</label>
+              <div
+                class="small d-flex align-items-center d-none"
+                id="editprofile-lname-error"
+              >
+                <svg
+                  class="inline-svg me-1"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                  />
+                </svg>
+                <p class="m-0" data-type="form-error-placeholder"></p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="update-fullname-btn"
+              type="button"
+              class="btn btn-success w-50"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="updatePhone"
+      tabindex="-1"
+      aria-labelledby="updatePhoneLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold" id="serviceType2Label">
+              Update Phone
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body d-flex flex-column gap-2">
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control"
+                id="update-phone"
+                placeholder="New Phone Number"
+                value="0655784664"
+              />
+              <label for="update-firstname">New Phone Number</label>
+              <div
+                class="small d-flex align-items-center d-none"
+                id="editprofile-phone-error"
+              >
+                <svg
+                  class="inline-svg me-1"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                  />
+                </svg>
+                <p class="m-0" data-type="form-error-placeholder"></p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="update-phone-btn"
+              type="button"
+              class="btn btn-success w-50"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="updateBirthdate"
+      tabindex="-1"
+      aria-labelledby="updateBirthdateLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold" id="serviceType2Label">
+              Update Birthdate
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body d-flex flex-column gap-2">
+            <div class="form-floating">
+              <input
+                type="date"
+                class="form-control"
+                id="update-birthdate"
+                placeholder="New Birthdate"
+                value="2004-06-08"
+              />
+              <label for="update-firstname">New Birthdate</label>
+              <div
+                class="small d-flex align-items-center d-none"
+                id="editprofile-birth-error"
+              >
+                <svg
+                  class="inline-svg me-1"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                  />
+                </svg>
+                <p class="m-0" data-type="form-error-placeholder"></p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="update-birthdate-btn"
+              type="button"
+              class="btn btn-success w-50"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="updateAddress"
+      tabindex="-1"
+      aria-labelledby="updateAddressLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 fw-bold" id="serviceType2Label">
+              Update Address
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body d-flex flex-column gap-2">
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control"
+                id="update-address"
+                placeholder="New Address"
+                value="Bordj Zemmoura - Bordj Bou Arreridj"
+              />
+              <label for="update-firstname">New Address</label>
+              <div
+                class="small d-flex align-items-center d-none"
+                id="editprofile-address-error"
+              >
+                <svg
+                  class="inline-svg me-1"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                  />
+                </svg>
+                <p class="m-0" data-type="form-error-placeholder"></p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              id="update-address-btn"
+              type="button"
+              class="btn btn-success w-50"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="saveChanges"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="saveChangesLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-body d-flex flex-column gap-4">
+            <div>Your data has been updated successfuly</div>
+            <div class="d-flex justify-content-end gap-2">
+              <div id="confirm-changes-btn" class="btn btn-success px-4">
+                Done
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="logoutAll"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="logoutAllLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-body d-flex flex-column gap-4">
+            <div>You have been logged out from all the other devices!</div>
+            <div class="d-flex justify-content-end gap-2">
+              <div
+                id="confirm-logout-btn"
+                class="btn btn-success px-4"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                Done
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="desactivateAccount"
+      tabindex="-1"
+      aria-labelledby="desactivateAccountLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-body d-flex flex-column gap-4">
+            <div>
+              When you click on "Desactivate Anyway", your account will be
+              desactivated and the your previous data still saved for a duration
+              of 3 monthes! <br />
+              You can reactivate it by signin on time in the duration of 3
+              monthes
+            </div>
+            <div class="d-flex justify-content-end gap-2">
+              <div id="confirm-desactivate-btn" class="btn btn-danger px-4">
+                Desactivate Anyway
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="removeAccount"
+      tabindex="-1"
+      aria-labelledby="removeAccountLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-body d-flex flex-column gap-4">
+            <div>
+              When you click on "Remove Account", your account will be removed
+              definitively and and you can't reactivate it. <br />
+              Are you sure you want to remove your account?
+            </div>
+            <div class="d-flex justify-content-end gap-2">
+              <div id="confirm-remove-btn" class="btn btn-danger px-4">
+                Remove Account
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenCycle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <div class="bg-image vw-100 vh-100 position-fixed"></div>
+
+    <div class="side-navbar text-dark" data-leftnav="close" id="side-navbar">
+      <ul>
+        <li>
+          <a href="./home.html" id="homelnav">Home</a>
+        </li>
+        <li class="active-nav">
+          <a href="./profile.html" id="skillslnav">Profile</a>
+        </li>
+        <li>
+          <a href="./call-delivery.html" id="aboutlnav">Call Delivery</a>
+        </li>
+        <li>
+          <a href="./index.html" class="text-danger" id="projectslnav"
+            >Log Out</a
+          >
+        </li>
+        <!-- <li>
+          <a href="./about.html" id="aboutlnav">about</a>
+        </li>
+        <li>
+          <a href="./contact.html" id="contactlnav">contact</a>
+        </li> -->
+      </ul>
+    </div>
+    <div class="container d-flex flex-column align-items-center pt-3">
+      <div
+        class="logo-nav w-100 ps-2 d-flex justify-content-between align-items-center"
+      >
+        <img class="h-100" src="./pictures/logo_dark.png" alt="logo" />
+        <div class="d-flex me-3 gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="gear-svg pe-2"
+            id="passToEditProfile"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="navbar-svg"
+            id="nav-list"
+            onclick="openleftnav()"
+            viewBox="0 0 448 512"
+            data-leftnav="close"
+          >
+            <path
+              d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="d-flex flex-column gap-3 mt-3">
+        <div class="d-flex w-100 justify-content-center">
+          <img
+            src="./pictures/Iman Gadzhi.jpeg"
+            alt="profile picture"
+            class="profile-picture rounded-circle"
+          />
+        </div>
+        <div class="w-100 d-flex align-items-center flex-column gap-1">
+          <h2 class="h2 m-0">Akram Bengueddoudj</h2>
+          <h5 class="h5 small m-0">@ <span>Akram.bengueddoudj</span></h5>
+          <div
+            class="badge text-bg-success d-flex align-items-center justify-content-center gap-2 rounded-pill w-25"
+          >
+            <span>1200</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              fill="currentColor"
+              class="points-svg"
+            >
+              <path
+                d="M116.7 33.8c4.5-6.1 11.7-9.8 19.3-9.8H376c7.6 0 14.8 3.6 19.3 9.8l112 152c6.8 9.2 6.1 21.9-1.5 30.4l-232 256c-4.5 5-11 7.9-17.8 7.9s-13.2-2.9-17.8-7.9l-232-256c-7.7-8.5-8.3-21.2-1.5-30.4l112-152zm38.5 39.8c-3.3 2.5-4.2 7-2.1 10.5l57.4 95.6L63.3 192c-4.1 .3-7.3 3.8-7.3 8s3.2 7.6 7.3 8l192 16c.4 0 .9 0 1.3 0l192-16c4.1-.3 7.3-3.8 7.3-8s-3.2-7.6-7.3-8L301.5 179.8l57.4-95.6c2.1-3.5 1.2-8.1-2.1-10.5s-7.9-2-10.7 1L256 172.2 165.9 74.6c-2.8-3-7.4-3.4-10.7-1z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div class="d-flex flex-column gap-1">
+          <h2 class="h2 m-0 fw-bold">Bio</h2>
+          <p class="m-0 text-justify">
+            Hi everyone! My name is Akram Bengueddoudj and I'm a 20-year-old student from Bordj Bou Arreridj, Algeria. Since I was young, I've been passionate about protecting our environment and living sustainably. That's why I joined GreenCycle – it allows me to connect with other eco-warriors, make recycling easier, and actively contribute to a cleaner Algeria.
+          </p>
+        </div>
+        <div class="d-flex flex-column gap-1">
+          <h2 class="h2 m-0 fw-bold">History</h2>
+          <div class="d-flex flex-column gap-1">
+            <div
+              class="history-card rounded-3 w-100 p-2 d-flex flex-column gap-3"
+            >
+              <div class="d-flex gap-1">
+                <span>Transmition with</span>
+                <span class="fw-bold">Eco Renewal</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="w-75">Material type:</div>
+                <div
+                  class="badge text-bg-primary fw-bold w-50 d-flex align-items-center justify-content-center"
+                >
+                  <span>paper</span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="w-75">Quantity:</div>
+                <div
+                  class="badge text-bg-primary fw-bold w-50 d-flex align-items-center justify-content-center gap-1"
+                >
+                  <span>50</span><span>Kg</span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="w-75">Status:</div>
+                <div
+                  class="badge text-bg-warning fw-bold w-50 d-flex align-items-center justify-content-center gap-1"
+                >
+                  <span>waiting</span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end gap-1">
+                <span>12-02-2024</span> / <span>03:00 PM</span>
+              </div>
+            </div>
+            <hr />
+            <div
+              class="history-card rounded-3 w-100 p-2 d-flex flex-column gap-3"
+            >
+              <div class="d-flex gap-1">
+                <span>Transmition with</span>
+                <span class="fw-bold">GreenEnv</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="w-75">Material type:</div>
+                <div
+                  class="badge text-bg-primary fw-bold w-50 d-flex align-items-center justify-content-center"
+                >
+                  <span>metal</span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="w-75">Quantity:</div>
+                <div
+                  class="badge text-bg-primary fw-bold w-50 d-flex align-items-center justify-content-center gap-1"
+                >
+                  <span>250</span><span>Kg</span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <div class="w-75">Status:</div>
+                <div
+                  class="badge text-bg-success fw-bold w-50 d-flex align-items-center justify-content-center gap-1"
+                >
+                  <span>delivered</span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end gap-1">
+                <span>09-02-2024</span> / <span>08:30 AM</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyright justify-content-center d-flex w-100 my-2">
+      all rights reserved for &copy; GreenCycle
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

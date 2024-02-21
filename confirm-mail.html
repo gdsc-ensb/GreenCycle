@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenCycle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body class="h-100">
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <div class="bg-image vw-100 vh-100 position-fixed"></div>
+    <div class="container d-flex flex-column align-items-center pt-3">
+      <div
+        class="logo-nav w-100 ps-2 d-flex justify-content-between align-items-center"
+      >
+        <img class="h-100" src="./pictures/logo_dark.png" alt="logo" />
+        <div class="d-flex me-3 gap-2"></div>
+      </div>
+      <div class="w-100 d-flex flex-column gap-3">
+        <div class="d-flex w-100 justify-content-center">
+          <img
+            src="./pictures/Mail-vector.png"
+            alt="confirm mail"
+            class="confirm-mail-png"
+          />
+        </div>
+        <div class="w-100">
+          <p class="m-0">
+            We've sent a 4-digit code to your email. Please enter it below to verify your account.
+          </p>
+        </div>
+
+        <div id="inputs" class="w-100 d-flex justify-content-center">
+          <input
+            class="otp-input"
+            data-role="otp-input"
+            id="otp-input-1"
+            type="text"
+            inputmode="numeric"
+            maxlength="1"
+          />
+          <input
+            class="otp-input"
+            data-role="otp-input"
+            id="otp-input-2"
+            type="text"
+            inputmode="numeric"
+            maxlength="1"
+          />
+          <input
+            class="otp-input"
+            data-role="otp-input"
+            id="otp-input-3"
+            type="text"
+            inputmode="numeric"
+            maxlength="1"
+          />
+          <input
+            class="otp-input"
+            data-role="otp-input"
+            id="otp-input-4"
+            type="text"
+            inputmode="numeric"
+            maxlength="1"
+          />
+        </div>
+
+        <div class="w-100 d-flex mt-4 justify-content-center">
+          <button
+            id="confirm-code-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#emailConfirmed"
+            data-role="open"
+            class="btn btn-primary rounded-pill w-75"
+            disabled
+          >
+            Confirm Code
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="copyright justify-content-center d-flex w-100 my-2">
+      all rights reserved for &copy; GreenCycle
+    </div>
+
+    <!-- modals -->
+    <div
+      class="modal fade"
+      id="emailConfirmed"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="emailConfirmedLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-body d-flex flex-column gap-4">
+            <div>Your Email has been confirmed successfully!</div>
+            <div class="d-flex justify-content-end gap-2">
+              <div id="confirm-mail-done-btn" class="btn btn-success px-4">
+                Done
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
