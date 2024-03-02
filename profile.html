@@ -74,18 +74,21 @@
       <div class="d-flex flex-column gap-3 mt-3">
         <div class="d-flex w-100 justify-content-center">
           <img
+            id="profile-picture"
             src="./pictures/Iman Gadzhi.jpeg"
             alt="profile picture"
             class="profile-picture rounded-circle"
           />
         </div>
         <div class="w-100 d-flex align-items-center flex-column gap-1">
-          <h2 class="h2 m-0">Akram Bengueddoudj</h2>
-          <h5 class="h5 small m-0">@ <span>Akram.bengueddoudj</span></h5>
+          <h2 class="h2 m-0" id="main-fullname">Akram Bengueddoudj</h2>
+          <h5 class="h5 small m-0">
+            @ <span id="main-username">Akram.bengueddoudj</span>
+          </h5>
           <div
             class="badge text-bg-success d-flex align-items-center justify-content-center gap-2 rounded-pill w-25"
           >
-            <span>1200</span>
+            <span id="points">1200</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -100,8 +103,13 @@
         </div>
         <div class="d-flex flex-column gap-1">
           <h2 class="h2 m-0 fw-bold">Bio</h2>
-          <p class="m-0 text-justify">
-            Hi everyone! My name is Akram Bengueddoudj and I'm a 20-year-old student from Bordj Bou Arreridj, Algeria. Since I was young, I've been passionate about protecting our environment and living sustainably. That's why I joined GreenCycle – it allows me to connect with other eco-warriors, make recycling easier, and actively contribute to a cleaner Algeria.
+          <p class="m-0 text-justify" id="bio">
+            Hi everyone! My name is Akram Bengueddoudj and I'm a 20-year-old
+            student from Bordj Bou Arreridj, Algeria. Since I was young, I've
+            been passionate about protecting our environment and living
+            sustainably. That's why I joined GreenCycle – it allows me to
+            connect with other eco-warriors, make recycling easier, and actively
+            contribute to a cleaner Algeria.
           </p>
         </div>
         <div class="d-flex flex-column gap-1">
@@ -189,5 +197,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/bootstrap.bundle.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/profile.js"></script>
   </body>
 </html>

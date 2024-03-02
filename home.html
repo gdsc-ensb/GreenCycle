@@ -52,11 +52,12 @@
           </svg>
         </div>
       </div>
-      <div class="d-flex flex-column mt-3 w-100 gap-2">
+      <div id="home-page" class="d-flex flex-column mt-3 w-100 gap-2">
         <div class="d-flex gap-2">
           <div class="btn-group dropend">
             <div data-bs-toggle="dropdown" role="button" aria-expanded="false">
               <img
+                id="main-profile-picture"
                 src="./pictures/Iman Gadzhi.jpeg"
                 alt=""
                 class="profile-picture-notification rounded-circle"
@@ -485,17 +486,22 @@
             <div class="d-flex align-items-center gap-2">
               <div class="post-profile-picture">
                 <img
+                  id="new-post-profile-picture"
                   src="./pictures/Iman Gadzhi.jpeg"
                   alt="profile picture"
                   class="w-100 h-100 rounded-circle"
                 />
               </div>
               <div class="d-flex flex-column">
-                <span class="fw-bold">Akram Bengueddoudj</span
-                ><span class="small">@akram.bengueddoudj</span>
+                <span class="fw-bold" id="new-post-fullname"
+                  >Akram Bengueddoudj</span
+                ><span class="small" id="new-post-username"
+                  >@akram.bengueddoudj</span
+                >
               </div>
             </div>
             <textarea
+              id="newPostCaption"
               class="form-control mdTextArea"
               placeholder="Write down your green ideas"
               maxlength="255"
@@ -536,6 +542,7 @@
               class="w-100 row gy-2 align-items-center m-0"
             ></div>
             <div
+              id="shareNewPostBtn"
               class="w-100 btn btn-primary"
               data-bs-dismiss="modal"
               aria-label="Close"
@@ -549,5 +556,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/bootstrap.bundle.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/home.js"></script>
   </body>
 </html>

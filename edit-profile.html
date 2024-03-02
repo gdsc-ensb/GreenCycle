@@ -99,7 +99,9 @@
             </svg>
           </div>
           <div class="d-flex gap-2">
-            <h5 class="h5 small m-0">@ <span>Akram.bengueddoudj</span></h5>
+            <h5 class="h5 small m-0">
+              @ <span id="main-username1">Akram.bengueddoudj</span>
+            </h5>
           </div>
         </div>
         <div class="d-flex w-100 flex-column gap-1 mt-3">
@@ -145,12 +147,15 @@ Hi everyone! My name is Akram Bengueddoudj and I'm a 20-year-old student from Bo
                   <div class="d-flex flex-column w-100 justify-content-between">
                     <div class="fw-bold">Username:</div>
                     <div class="align-self-end text-end">
-                      @ <span>Akram.bengueddoudj</span>
+                      @ <span id="main-username2">Akram.bengueddoudj</span>
                     </div>
                   </div>
                   <div class="d-flex flex-column w-100 justify-content-between">
                     <div class="fw-bold">Email:</div>
-                    <div class="align-self-end text-truncate w-100 text-end">
+                    <div
+                      id="info-email"
+                      class="align-self-end text-truncate w-100 text-end"
+                    >
                       bengueddoudjakram@gmail.com
                     </div>
                   </div>
@@ -258,20 +263,22 @@ Hi everyone! My name is Akram Bengueddoudj and I'm a 20-year-old student from Bo
                   </a>
                   <div class="d-flex flex-column gap-1">
                     <span class="fw-bold">Where you are logged in</span>
-                    <div class="d-flex flex-column">
-                      <div class="d-flex justify-content-between">
-                        <span>Galaxy A02</span>
-                        <span>Constantine</span>
+                    <div class="d-flex flex-column gap-1" id="logged-in">
+                      <div class="d-flex flex-column">
+                        <div class="d-flex justify-content-between">
+                          <span>Galaxy A02</span>
+                          <span>Constantine</span>
+                        </div>
+                        <div class="align-self-end small">09-02-2024</div>
                       </div>
-                      <div class="align-self-end small">09-02-2024</div>
-                    </div>
-                    <hr class="m-0 p-0" />
-                    <div class="d-flex flex-column">
-                      <div class="d-flex justify-content-between">
-                        <span>ACER Laptop</span>
-                        <span>Constantine</span>
+                      <hr class="m-0 p-0" />
+                      <div class="d-flex flex-column">
+                        <div class="d-flex justify-content-between">
+                          <span>ACER Laptop</span>
+                          <span>Constantine</span>
+                        </div>
+                        <div class="align-self-end small">12-02-2024</div>
                       </div>
-                      <div class="align-self-end small">12-02-2024</div>
                     </div>
                     <button
                       class="btn btn-danger align-self-center w-75"
@@ -765,5 +772,6 @@ Hi everyone! My name is Akram Bengueddoudj and I'm a 20-year-old student from Bo
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/bootstrap.bundle.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/edit-profile.js"></script>
   </body>
 </html>
