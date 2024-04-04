@@ -59,7 +59,7 @@ run following commands:
 $ cd GreenCycle/back-end
 $ python -m pip install -U pip
 $ python -m venv ./greencyclevenv
-$ .\venv_name\Scripts\activate
+$ .\greencyclevenv\Scripts\activate
 $ pip install -r requirements.txt
 $ python manage.py collectstatic
 ```
