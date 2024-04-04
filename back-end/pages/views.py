@@ -27,7 +27,7 @@ from . import models
 
 def get_wilaya_from_coordinates(latitude, longitude):
     # Make a reverse geocoding request to the chosen service
-    url = f'https://maps.googleapis.com/maps/api/geocode/json?latlng={latitude},{longitude}&key=AIzaSyAldANfMZcFI1i6grgVnpP1HBCkn4pDvSI'
+    url = f'https://maps.googleapis.com/maps/api/geocode/json?latlng={latitude},{longitude}&key=YourGoogleMapsApiKey'
     response = requests.get(url)
     data = response.json()
 
