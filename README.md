@@ -17,6 +17,66 @@ A web platform empowering individuals and recycling companies to collaborate for
 - **Back-End:** Python (Django & Django REST Framework)
 - **Database:** PostgreSQL
 - **Deployment:** Google Cloud Platform
+### Dependencies:
+- **PostgreSQL** installed
+- **Python3** installed
+
+### Instalation:
+- **Clone Repository:** 
+run following command
+```bash
+$ git clone https://github.com/gdsc-ensb/GreenCycle.git
+```
+Or download ZIP file from [here](https://github.com/gdsc-ensb/GreenCycle/).
+- **Create Database:**
+run following command:
+```bash
+psql -U postgres
+```
+past the following commands:
+```bash
+CREATE USER your_username WITH PASSWORD 'your_password';
+CREATE DATABASE greencycledb;
+ALTER ROLE your_username WITH PASSWORD 'your_password';
+GRANT ALL PRIVILEGES ON DATABASE greencycledb TO your_username;
+ALTER DATABASE greencycledb OWNER TO your_username;
+
+ALTER ROLE your_username SET client_encoding TO 'utf8';
+ALTER ROLE your_username SET default_transaction_isolation TO 'read committed';
+ALTER ROLE your_username SET timezone TO 'UTC';
+
+\q
+```
+- **Update Settings:**
+open the file **'settings.py'** in your text editor
+```bash
+path of file: ..../GreenCycle/back-end/greencycle/settings.py
+```
+change the username and password in the database settings (line 96-97) to your username and password.
+- **Create Virtual Environment:**
+run following commands:
+```bash
+$ cd GreenCycle/back-end
+$ python -m pip install -U pip
+$ python -m venv ./greencyclevenv
+$ .\venv_name\Scripts\activate
+$ pip install -r requirements.txt
+$ python manage.py collectstatic
+```
+- **Migrate Tables to Database:**
+run following commands:
+```bash
+$ python manage.py makemigrations
+$ python manage.py migrate
+```
+
+### Starting Server:
+run following commands:
+```bash
+$ .\venv_name\Scripts\activate
+$ python manage.py runserver
+```
+
 ### Developed by:
 
 - **The developer:** [Akram Bengueddoudj](https://github.com/akrambengueddoudj)
