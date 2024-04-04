@@ -1,0 +1,69 @@
+{% extends 'base.html' %}{% load static %} {% block title %}Confirm Mail{% endblock %}{% block side_navbar %}{% include 'parts/_side_navbar.html' %}{% endblock %} {% block content %} {% include 'parts/_logo_nav_side.html' %}
+<div class="w-100 d-flex flex-column gap-3">
+  <div class="d-flex w-100 justify-content-center">
+    <img
+      src="{% static 'pictures/Mail-vector.png' %}"
+      alt="confirm mail"
+      class="confirm-mail-png"
+    />
+  </div>
+  <div class="w-100">
+    <p class="m-0 text-md-center">
+      We've sent a 4-digit code to your email. Please enter it below to
+      verify your account. 
+    </p>
+    <input class="d-none" id="userID" value={{ user_id }} />
+  </div>
+  {% csrf_token %}
+  <div id="inputs" class="w-100 d-flex justify-content-center">
+    <input
+      class="otp-input"
+      data-role="otp-input"
+      id="otp-input-1"
+      type="text"
+      inputmode="numeric"
+      maxlength="1"
+    />
+    <input
+      class="otp-input"
+      data-role="otp-input"
+      id="otp-input-2"
+      type="text"
+      inputmode="numeric"
+      maxlength="1"
+    />
+    <input
+      class="otp-input"
+      data-role="otp-input"
+      id="otp-input-3"
+      type="text"
+      inputmode="numeric"
+      maxlength="1"
+    />
+    <input
+      class="otp-input"
+      data-role="otp-input"
+      id="otp-input-4"
+      type="text"
+      inputmode="numeric"
+      maxlength="1"
+    />
+  </div>
+
+  <div class="w-100 d-flex mt-4 justify-content-center">
+    <button
+      id="confirm-code-btn"
+      class="btn btn-primary rounded-pill w-75"
+      disabled
+    >
+      Confirm Code
+    </button>
+  </div>
+</div>
+{% endblock %}
+{% block bootstrap_modals %}
+{% endblock %}
+{% block custom_js %}
+<script src="{% static './js/accounts.js' %}"></script>
+<script src="{% static './js/confirm-mail.js' %}"></script>
+{% endblock %}

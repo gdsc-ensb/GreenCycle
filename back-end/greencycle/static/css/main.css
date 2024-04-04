@@ -1,0 +1,360 @@
+body {
+  font-family: "Montserrat", sans-serif;
+}
+a {
+  text-decoration: none;
+  color: unset;
+}
+.bg-image {
+  background-image: url("/static/pictures/bg.jpeg");
+  filter: grayscale(40%) blur(12px);
+  -webkit-filter: grayscale(40%) blur(12px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+.logo-nav {
+  height: 5rem;
+}
+.welcome-paragraph {
+  font-family: "Roboto Mono", monospace;
+}
+.copyright {
+  top: 100%;
+}
+.inline-svg {
+  height: 0.85rem;
+}
+.reset-pass-png {
+  height: 20rem;
+  max-width: 100%;
+}
+.confirm-mail-png {
+  height: 18rem;
+  max-width: 100%;
+}
+/* otp inputs */
+.otp-input {
+  width: 40px;
+  border: none;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+  margin: 0 10px;
+  text-align: center;
+  font-size: 36px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.otp-input:focus {
+  border-bottom: 3px solid orange;
+  outline: none;
+}
+
+/* Profile */
+.profile-picture {
+  width: 7rem;
+  height: 7rem;
+}
+.text-justify {
+  text-align: justify;
+}
+.points-svg {
+  height: 0.75rem;
+}
+.history-card {
+  background-color: #f0f8ff4f;
+  filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.1));
+}
+.profile-picture-pen {
+  width: 2rem;
+  height: 2rem;
+  right: calc(50% - 3.5rem);
+  bottom: 0;
+  background-color: #fff;
+}
+.profile-picture-pen-svg {
+  width: 1rem;
+}
+.profile-number-pen-svg {
+  width: 0.85rem;
+}
+.accordion-body {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.form-check-input:checked {
+  background-color: #212529;
+  border-color: #212529;
+}
+.mdTextArea {
+  height: 13rem !important;
+}
+.navbar-svg {
+  width: 2rem;
+  cursor: pointer;
+}
+.gear-svg {
+  width: 2rem;
+  border-right: 1px solid black;
+  box-sizing: content-box;
+}
+
+/* side navbar */
+
+@keyframes opensidenavtoside {
+  from {
+    width: 0;
+    padding: 0;
+  }
+  to {
+    width: 80%;
+    padding: 30px;
+  }
+}
+@keyframes closesidenavtoside {
+  from {
+    width: 80%;
+    padding: 30px;
+  }
+  to {
+    width: 0;
+    padding: 0;
+  }
+}
+.side-navbar .sidenav-logo {
+  align-self: center;
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+}
+.side-navbar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+.side-navbar ul li {
+  border-bottom: black 1px solid;
+  padding-bottom: 11px;
+  width: 50%;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+.side-navbar ul li:hover {
+  width: 53%;
+  border-bottom-width: 2px;
+  transition: all 500ms;
+  transform: scale(1.1);
+}
+.side-navbar ul li.active-nav {
+  width: 70%;
+  border-bottom-width: 3px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.side-navbar {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 3000;
+  box-sizing: border-box;
+  gap: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #e6eddf4f;
+  backdrop-filter: blur(20px);
+}
+.side-navbar[data-leftnav="open"] {
+  animation-name: opensidenavtoside;
+  animation-duration: 1s;
+  width: 80%;
+}
+.side-navbar:not([data-leftnav="open"]) {
+  animation-name: closesidenavtoside;
+  animation-duration: 1s;
+  width: 0;
+}
+
+/* call-delivery */
+.square-container {
+  position: relative;
+  width: calc(100% / 5);
+  padding-bottom: calc(100% / 5);
+  overflow: hidden;
+}
+.square-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin-left: -1rem;
+}
+.remove-pic-svg {
+  width: 1rem;
+  top: 0.25rem;
+  right: 0.5rem;
+}
+.bg-gallery {
+  background-image: url("/static/pictures/pictures/Wallpaper-mountains.jpeg");
+  background-size: cover;
+  background-position: 0rem -56px;
+  filter: opacity(50%) grayscale(40%);
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+.map-container {
+  height: 20rem;
+  /* background-color: aqua; */
+}
+.delivery-day {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.map-location-svg {
+  width: 2rem;
+}
+
+/* Home */
+.profile-picture-notification,
+.post-profile-picture {
+  width: 3rem;
+  height: 3rem;
+}
+.comment-profile-picture img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.notification-dropdown {
+  width: 70vw;
+}
+.notification-dropdown li:not(:first-child) .dropdown-item {
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+.notification-dropdown li .dropdown-item[data-notification-status="not-read"] {
+  background-color: #3fc9ff42;
+}
+.main-new-post {
+  height: 3rem;
+}
+#ads {
+  height: 10rem;
+  overflow: hidden;
+}
+.minh-100 {
+  min-height: 100%;
+}
+.minw-100 {
+  min-width: 100%;
+}
+.square-container-w100 {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+.square-image-w100 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.post-caption {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /* truncate to 2 lines */
+  -webkit-line-clamp: 2;
+}
+.reactions svg,
+.reactions .like {
+  width: 1.75rem;
+}
+.add-comment {
+  border: none;
+}
+.add-comment:focus-visible {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+.send-comment {
+  width: 1rem;
+}
+.comment-content {
+  min-height: 40vh;
+}
+.z-0 {
+  z-index: 0;
+}
+.z-1 {
+  z-index: 1;
+}
+#map {
+  height: 100%;
+}
+.container {
+  max-width: 768px;
+}
+/* media query */
+/* -sm- */
+@media (min-width: 576px) {
+  .comments .modal-dialog {
+    max-width: unset;
+  }
+}
+/* -md- */
+@media (min-width: 768px) {
+  @keyframes opensidenavtoside {
+    from {
+      width: 0;
+      padding: 0;
+    }
+    to {
+      width: 500px;
+      padding: 30px;
+    }
+  }
+  @keyframes closesidenavtoside {
+    from {
+      width: 500px;
+      padding: 30px;
+    }
+    to {
+      width: 0;
+      padding: 0;
+    }
+  }
+  .side-navbar {
+    right: calc(50% - 768px / 2);
+  }
+  .side-navbar[data-leftnav="open"] {
+    width: 500px;
+  }
+  .container {
+    width: 768px;
+  }
+  .profile-picture {
+    width: 10rem;
+    height: 10rem;
+  }
+  .profile-picture-pen {
+    width: 2.5rem;
+    height: 2.5rem;
+    right: calc(50% - 4.7rem);
+    bottom: 0.3rem;
+  }
+  .comments .modal-dialog {
+    width: 768px;
+    margin: auto !important;
+  }
+}

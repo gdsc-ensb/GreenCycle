@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenCycle | {% block title %}{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Roboto+Mono:wght@100..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static './css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static './css/main.css' %}" />
+    {% block custom_css %}{% endblock %}
+  </head>
+  <body>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <div class="bg-image vw-100 vh-100 position-fixed"></div>
+    {% block side_navbar %}{% endblock %}
+    <div class="container d-flex flex-column align-items-center pt-3">
+      {% block content %}{% endblock %}
+    </div>
+    <div class="copyright justify-content-center d-flex w-100 my-2">
+      all rights reserved for &copy; GreenCycle
+    </div>
+    {% block bootstrap_modals %}{% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static './js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static './js/main.js' %}"></script>
+    {% block custom_js %}{% endblock %}
+  </body>
+</html>

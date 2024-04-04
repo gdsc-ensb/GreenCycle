@@ -1,0 +1,25 @@
+{% load static %}
+<div class="side-navbar text-dark" data-leftnav="close" id="side-navbar">
+  <ul>
+    <li {% if 'home' in request.path %}class="active-nav"{% endif %}>
+      <a href="{% url 'index' %}" id="homelnav">Home</a>
+    </li>
+    <li {% if 'profile' in request.path %}class="active-nav"{% endif %}>
+      <a href="{% url 'profile' %}" id="skillslnav">Profile</a>
+    </li>
+    <li {% if 'call_delivery' in request.path %}class="active-nav"{% endif %}>
+      <a href="{% url 'call_delivery_page' %}" id="aboutlnav">Call Delivery</a>
+    </li>
+    <li>
+      <a href="{% url 'logout' %}" class="text-danger" id="projectslnav"
+        >Log Out</a
+      >
+    </li>
+    <!-- <li>
+      <a href="./about.html" id="aboutlnav">about</a>
+    </li>
+    <li>
+      <a href="./contact.html" id="contactlnav">contact</a>
+    </li> -->
+  </ul>
+</div>

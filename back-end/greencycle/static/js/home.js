@@ -216,7 +216,7 @@ function setAlldata(data) {
       let postPicture = `
       <img
           src="${post.pictures[0].src}"
-          alt="${post.pictures[0]}"
+          alt="${post.picture[0]}"
           class="square-image-w100"
       />
       `;

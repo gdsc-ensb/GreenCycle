@@ -1,0 +1,133 @@
+{% extends 'base.html' %}{% load static %} {% block title %}Select Company{% endblock %}{% block side_navbar %}{% include 'parts/_side_navbar.html' %}{% endblock %} {% block content %} {% include 'parts/_logo_nav_side.html' %}
+<div class="d-flex flex-column mt-3 w-100 gap-2">
+  <h2 class="h2 m-0" id="select-company-title">Select Company:</h2>
+  <div class="map-container w-100"><div id="map"></div></div>
+  {% csrf_token %}
+  <div class="form-floating">
+    <input type="hidden" name="order_id" id="order_id" class="d-none" value={{ delivery_order.id }} />
+    <select
+      class="form-select"
+      id="delivery-company"
+      aria-label="Floating label select"
+    >
+      
+    </select>
+    <label for="delivery-company">Company</label>
+  </div>
+  <div class="d-flex flex-column gap-2 w-100 rounded-2 text-bg-light p-3">
+    <div class="d-flex gap-2">
+      <span class="w-25 fw-bold">Name:</span>
+      <span id="company-name">GreenCycle Solutions</span>
+    </div>
+    <div class="d-flex gap-2">
+      <span class="w-25 fw-bold">Address:</span>
+      <span id="company-address">Algiers - El-Casbah</span>
+    </div>
+    <div class="d-flex gap-2">
+      <span class="w-25 fw-bold">Phone:</span>
+      <span id="company-phone">+213666666666</span>
+    </div>
+    <div class="d-flex gap-2">
+      <span class="w-25 fw-bold">Email:</span>
+      <span id="company-email">GreeSol.contact@gmail.com</span>
+    </div>
+    <div class="d-flex gap-2">
+      <span class="w-25 fw-bold">Time:</span>
+      <div class="d-flex flex-column gap-1">
+        <div class="d-flex gap-1">
+          <div
+            id="company-day-Sun"
+            data-role="company-day"
+            class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-success"
+          >
+            S
+          </div>
+          <div
+            id="company-day-Mon"
+            data-role="company-day"
+            class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-success"
+          >
+            M
+          </div>
+          <div
+            id="company-day-Tue"
+            data-role="company-day"
+            class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-secondary"
+          >
+            T
+          </div>
+          <div
+            id="company-day-Wed"
+            data-role="company-day"
+            class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-success"
+          >
+            W
+          </div>
+          <div
+            id="company-day-Thu"
+            data-role="company-day"
+            class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-secondary"
+          >
+            T
+          </div>
+          <div
+            id="company-day-Fri"
+            data-role="company-day"
+            class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-secondary"
+          >
+            F
+          </div>
+          <div
+            id="company-day-Sat"
+            data-role="company-day"
+            class="delivery-day d-flex justify-content-center align-items-center rounded-circle text-bg-success"
+          >
+            S
+          </div>
+        </div>
+        <div class="d-flex gap-1" id="company-time">
+          <span>08:00</span><span>to</span><span>18:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button
+    class="btn btn-primary w-100"
+    id="confirm-delivery-btn"
+  >
+    Confirm
+  </button>
+</div>
+{% endblock %}
+{% block bootstrap_modals %}
+<div
+  class="modal fade"
+  id="callDeliveryConfirmed"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="callDeliveryConfirmedLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-body d-flex flex-column gap-4">
+        <div>
+          Your Demand of the delivery was sent to the company, You can see
+          the details of the service in your profile!
+        </div>
+        <div class="d-flex justify-content-end gap-2">
+          <div id="confirm-delivery-done-btn" class="btn btn-success px-4">
+            Done
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block custom_js %}
+<script src="{% static './js/accounts.js' %}"></script>
+<script src="{% static './js/map.js' %}"></script>
+<script src="{% static './js/select-company.js' %}"></script>
+{% endblock %}

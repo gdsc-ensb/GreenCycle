@@ -1,0 +1,56 @@
+{% extends 'base.html' %}{% load static %} {% block title %}Profile{% endblock %}{% block side_navbar %}{% include 'parts/_side_navbar.html' %}{% endblock %} {% block content %} {% include 'parts/_logo_nav_side_profile.html' %}
+<div class="d-flex flex-column gap-3 mt-3 w-100">
+  <div class="d-flex w-100 justify-content-center">
+    <img
+      id="profile-picture"
+      {% if user.userprofile.picture %}
+      src="{{ user.userprofile.picture.url }}"
+      alt="{{ user.userprofile }} profile"
+      {% else %}
+      src="{% static 'pictures/character.jpg' %}"
+      alt="profile picture"
+      {% endif %}
+      class="profile-picture rounded-circle"
+    />
+  </div>
+  <div class="w-100 d-flex align-items-center flex-column gap-1">
+    <h2 class="h2 m-0" id="main-fullname">{{ user.first_name }}  {{ user.last_name }}</h2>
+    <h5 class="h5 small m-0">
+      @ <span id="main-username">{{ user.username }}</span>
+    </h5>
+    <div
+      class="badge text-bg-success d-flex align-items-center justify-content-center gap-2 rounded-pill w-25"
+    >
+      <span id="points">0</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+        fill="currentColor"
+        class="points-svg"
+      >
+        <path
+          d="M116.7 33.8c4.5-6.1 11.7-9.8 19.3-9.8H376c7.6 0 14.8 3.6 19.3 9.8l112 152c6.8 9.2 6.1 21.9-1.5 30.4l-232 256c-4.5 5-11 7.9-17.8 7.9s-13.2-2.9-17.8-7.9l-232-256c-7.7-8.5-8.3-21.2-1.5-30.4l112-152zm38.5 39.8c-3.3 2.5-4.2 7-2.1 10.5l57.4 95.6L63.3 192c-4.1 .3-7.3 3.8-7.3 8s3.2 7.6 7.3 8l192 16c.4 0 .9 0 1.3 0l192-16c4.1-.3 7.3-3.8 7.3-8s-3.2-7.6-7.3-8L301.5 179.8l57.4-95.6c2.1-3.5 1.2-8.1-2.1-10.5s-7.9-2-10.7 1L256 172.2 165.9 74.6c-2.8-3-7.4-3.4-10.7-1z"
+        />
+      </svg>
+    </div>
+  </div>
+  <div class="d-flex flex-column gap-1">
+    <h2 class="h2 m-0 fw-bold">Bio</h2>
+    <p class="m-0 text-justify" id="bio">
+      {% if user.userprofile.bio %}
+      {{ user.userprofile.bio }}
+      {% else %}
+      You don't have a bio yet!
+      {% endif %}
+    </p>
+  </div>
+  <div class="d-flex flex-column gap-1">
+    <h2 class="h2 m-0 fw-bold">History</h2>
+    <div class="d-flex flex-column gap-1" id="history-container"></div>
+  </div>
+</div>
+{% endblock %}
+{% block custom_js %}
+<script src="{% static './js/accounts.js' %}"></script>
+<script src="{% static './js/profile.js' %}"></script>
+{% endblock %}

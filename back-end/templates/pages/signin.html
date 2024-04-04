@@ -1,0 +1,117 @@
+{% extends 'base.html' %}{% load static %} {% block title %}Sign In{% endblock %} {% block content %} {% include 'parts/_logo_nav.html' %}
+      <div class="d-flex flex-column gap-3 w-100 mt-3">
+        <h2 class="h1 ps-3 fw-bold m-0">Welcome Again</h2>
+        <div class="w-100">
+          <p class="text-justify m-0">
+            We're excited to have you back with us. Please enter your account
+            details and begin your journey towards making a positive impact
+          </p>
+        </div>
+        <div class="w-100 d-flex flex-column gap-2">
+          {% csrf_token %}
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="signin-mail-username"
+              placeholder="Username / Email"
+            />
+            <label for="signin-mail-username">Username / Email</label>
+            <div
+              class="small d-flex align-items-center d-none"
+              id="signin-username-error"
+            >
+              <svg
+                class="inline-svg me-1"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                />
+              </svg>
+              <p class="m-0" data-type="form-error-placeholder"></p>
+            </div>
+          </div>
+          <div class="d-flex flex-column gap-1">
+            <div class="form-floating">
+              <input
+                type="password"
+                class="form-control"
+                id="signin-password"
+                placeholder="Password"
+              />
+              <label for="signin-password">Password</label>
+              <div
+                class="small d-flex align-items-center d-none"
+                id="signin-username-password"
+              >
+                <svg
+                  class="inline-svg me-1"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+                  />
+                </svg>
+                <p class="m-0" data-type="form-error-placeholder"></p>
+              </div>
+            </div>
+            <a href="{% url 'reset_password' %}" class="text-primary"
+              >Forget you password?</a
+            >
+          </div>
+        </div>
+        <div class="w-100 d-flex justify-content-center">
+          <input
+            type="button"
+            onclick=signin()
+            value="SignIn"
+            id="signin-signin-btn"
+            class="btn btn-primary rounded-pill w-75"
+          />
+        </div>
+        <div class="d-flex w-100 gap-3 align-items-center">
+          <hr class="w-100" />
+          <span>Or</span>
+          <hr class="w-100" />
+        </div>
+        <div class="w-100 d-flex justify-content-center">
+          <input
+            type="button"
+            value="Create Account"
+            id="signin-signup-btn"
+            class="btn btn-light rounded-pill w-75"
+          />
+        </div>
+        <div class="w-100 px-5">
+          <div
+            id="g_id_onload"
+            data-client_id="YOUR_GOOGLE_CLIENT_ID
+
+"
+            data-login_uri="https://your.domain/your_login_endpoint
+
+"
+
+            data-auto_prompt="false"
+          ></div>
+          <div
+            class="g_id_signin"
+            data-type="standard"
+            data-size="large"
+            data-theme="outline"
+            data-text="continue_with"
+            data-shape="pill"
+            data-logo_alignment="left"
+          ></div>
+        </div>
+      </div>
+
+
+{% endblock %}
+{% block custom_js %}<script src="{% static './js/accounts.js' %}"></script>
+{% endblock %}

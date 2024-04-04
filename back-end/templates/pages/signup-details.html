@@ -1,0 +1,121 @@
+{% extends 'base.html' %}{% load static %} {% block title %}create account{% endblock %} {% block content %} {% include 'parts/_logo_nav.html' %}
+<div class="d-flex flex-column gap-3 w-100 mt-3">
+  <h2 class="h1 ps-3 fw-bold m-0">Sign Up | {{ user.first_name }}'s Profile</h2>
+  <div class="w-100">
+    <p class="text-justify m-0">
+      Completing your profile unlocks access to GreenCycle's exciting
+      features like points, badges, and rewards
+    </p>
+  </div>
+  <div class="w-100 d-flex flex-column gap-2">
+    <input type="number" id="userID" class="d-none" value="{{user.pk}}"/>
+    <div class="form-floating">
+      <input
+        type="number"
+        class="form-control"
+        id="signup-phone"
+        placeholder="Phone Number"
+      />
+      <label for="signup-phone">Phone Number</label>
+      <div
+        class="small d-flex align-items-center d-none"
+        id="signup-phone-error"
+      >
+        <svg
+          class="inline-svg me-1"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+          />
+        </svg>
+        <p class="m-0" data-type="form-error-placeholder"></p>
+      </div>
+    </div>
+    <div class="form-floating">
+      <input
+        type="date"
+        class="form-control"
+        id="signup-birthdate"
+        placeholder="Birth Date"
+      />
+      <label for="signup-birthdate">Birth Date</label>
+      <div
+        class="small d-flex align-items-center d-none"
+        id="signup-birth-error"
+      >
+        <svg
+          class="inline-svg me-1"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+          />
+        </svg>
+        <p class="m-0" data-type="form-error-placeholder"></p>
+      </div>
+    </div>
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control"
+        id="signup-address"
+        placeholder="Address"
+      />
+      <label for="signup-address">Address</label>
+      <div
+        class="small d-flex align-items-center d-none"
+        id="signup-address-error"
+      >
+        <svg
+          class="inline-svg me-1"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"
+          />
+        </svg>
+        <p class="m-0" data-type="form-error-placeholder"></p>
+      </div>
+    </div>
+    <div class="m-0">
+      <p class="m-0">
+        By click <span class="fw-bold">Create Account</span> you aggree to
+        our
+        <a class="text-decoration-none" href="#">condition of use</a> and
+        <a class="text-decoration-none" href="#">policy privacy</a>
+      </p>
+    </div>
+  </div>
+  <div class="w-100 d-flex justify-content-center">
+    {% csrf_token %}
+    <input
+      type="button"
+      value="Create Account"
+      id="signup-create-account-btn"
+      class="btn btn-primary rounded-pill w-75"
+    />
+  </div>
+  <div class="d-flex w-100 gap-3 align-items-center">
+    <hr class="w-100" />
+    <span>Or</span>
+    <hr class="w-100" />
+  </div>
+  <div class="d-flex w-100">
+    <a
+      href="/signup_company/"
+      class="btn btn-outline-dark fw-bold w-100"
+    >
+      Try GreenCycle for companies
+    </a>
+  </div>
+</div>
+{% endblock %}
+{% block custom_js %}<script src="{% static './js/accounts.js' %}"></script>
+{% endblock %}
