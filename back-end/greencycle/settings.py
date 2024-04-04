@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(brkb_05%8#k8*^y=4+(dh&dsx2x+!y1o!8=un@hepj&5i9_@o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -92,11 +92,11 @@ WSGI_APPLICATION = 'greencycle.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'greencycledb',
-        'USER': 'postgres',
-        'PASSWORD': 'akira',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
@@ -152,7 +152,9 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# SMTP  settings for sending emails from the site
+# SMTP settings for sending emails from the site
+# sending email is set to console, change it to your SMTP email,
+# uncomment the line below and delete the console email backend variable:
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
