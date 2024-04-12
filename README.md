@@ -48,16 +48,16 @@ ALTER ROLE your_username SET timezone TO 'UTC';
 \q
 ```
 - **Update Settings:**
-open the file **'settings.py'** in your text editor
-```bash
-path of file: ..../GreenCycle/back-end/greencycle/settings.py
-```
-change the username and password in the database settings (line 96-97) to your username and password.
-open the file **'base.html'** in your text editor
-```bash
-path of file: ..../GreenCycle/back-end/templates/base.html
-```
-put you JS Google Maps API Key in the line 17
+  - open the file **'settings.py'** in your text editor
+  ```bash
+  path of file: ..../GreenCycle/back-end/greencycle/settings.py
+  ```
+  change the username and password in the database settings (line 96-97) to your username and password.
+  - open the file **'base.html'** in your text editor
+  ```bash
+  path of file: ..../GreenCycle/back-end/templates/base.html
+  ```
+  put you JS Google Maps API Key in the line 17
 
 ### Installing Dependencies:
 
