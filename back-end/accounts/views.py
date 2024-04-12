@@ -108,9 +108,9 @@ class CreateCompanyView(APIView):
                     {'user': user_serializer.data},
                     status=status.HTTP_201_CREATED
                 )
-            except:
+            except Exception as e:
                 user.delete()
-                return Response(company_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'error': e}, status=status.HTTP_400_BAD_REQUEST)
         return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -162,11 +162,11 @@ def signin(request, user=None):
             'user': str(user),
             'status': status.HTTP_200_OK
         }
-        return JsonResponse(content)
+        return JsonResponse(content, status=status.HTTP_200_OK)
     else:
         content = {'error': "Invalid user",
                    'status': status.HTTP_401_UNAUTHORIZED}
-        return JsonResponse(content)
+        return JsonResponse(content, status=status.HTTP_401_UNAUTHORIZED)
 
 
 def signout(request):

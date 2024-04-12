@@ -203,7 +203,7 @@ a {
   right: 0.5rem;
 }
 .bg-gallery {
-  background-image: url("/static/pictures/pictures/Wallpaper-mountains.jpeg");
+  background-image: url("/static/pictures/Wallpaper-mountains.jpeg");
   background-size: cover;
   background-position: 0rem -56px;
   filter: opacity(50%) grayscale(40%);

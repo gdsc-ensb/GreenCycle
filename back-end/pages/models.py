@@ -38,6 +38,9 @@ class Comment(models.Model):
     def __str__(self):
         return f'{self.user.username} - {self.created_at} - Comment'
 
+    class Meta:
+        ordering = ['-created_at']
+
 
 class Materials(models.Model):
     name = models.CharField(max_length=256, null=True, blank=True)

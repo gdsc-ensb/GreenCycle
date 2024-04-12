@@ -1,21 +1,28 @@
-function getAllData() {
-  let AllData;
+function getAllData(refresh = true) {
   $.ajax({
-    url: "your_backend_endpoint",
+    url: "/api/get_posts/",
     method: "GET",
     headers: {
       "X-CSRFToken": getCSRFToken(),
     },
     data: {},
     success: function (response) {
-      AllData = response.data;
+      if (refresh) {
+        $("#picsForPost").val("");
+        $("#newPostCaption").val("");
+        $("#newPost").modal("hide");
+        $("#commentsContainer").html("");
+        $("#repostsContainer").html("");
+        $('#picsForPostContainer').html("");
+        $("#postsContainer").html("")
+      }
+      setAlldata(response)
     },
     error: function (xhr, status, error) {
       // Handle errors
       console.error("Error:", status, error);
     },
   });
-  return AllData;
 }
 function getTimeDifference(postDateTime) {
   // Convert postDateTime to a Date object
@@ -44,30 +51,48 @@ function getTimeDifference(postDateTime) {
     return days + "d ago";
   }
 }
-function setAlldata(data) {
-  $("#main-profile-picture").attr("src", data.profile.profilePicture.src);
-  $("#main-profile-picture").attr("alt", data.profile.profilePicture);
-  $("#new-post-profile-picture").attr("src", data.profile.profilePicture.src);
-  $("#new-post-profile-picture").attr("alt", data.profile.profilePicture);
-  $("#new-post-fullname").text(
-    data.profile.firstName + " " + data.profile.lastName
-  );
-  $("#new-post-username").text(data.profile.username);
-  let posts = data.posts;
+function setComments(comments, index) {
+  $(`#comment${index}`).html("");
+  comments.forEach((comment) => {
+    let commentMessage = `
+      <div class="mb-2 d-flex gap-2">
+          <div class="comment-profile-picture">
+              <img
+              src="${comment.user.userprofile ? comment.user.userprofile.picture ? comment.user.userprofile.picture : '/static/pictures/character.jpg' : '/static/pictures/character.jpg'}"
+              alt="${comment.user.userprofile ? comment.user.userprofile.picture ? comment.user.userprofile.picture : '/static/pictures/character.jpg' : '/static/pictures/character.jpg'}"
+              class="rounded-circle"
+              />
+          </div>
+          <div class="d-flex flex-column">
+              <span class="fw-bold small">${comment.user.first_name} ${comment.user.last_name}</span>
+              <div class="small">
+              ${comment.content}
+              </div>
+          </div>
+      </div>
+      `;
+    $(`#comment${index}`).append(commentMessage);
+  });
+}
+function setAlldata(posts) {
   posts.forEach((post, index) => {
-    let timedifference = getTimeDifference(post.time);
+    let timedifference = getTimeDifference(post.created_at);
+    let isLiked = false;
+    if (post.likes.includes(+$("#current_user").val())) {
+      isLiked = true;
+    }
     let postChild = `
     <div class="post d-flex flex-column gap-1 w-100">
         <div class="d-flex align-items-center gap-2">
             <div class="post-profile-picture">
                 <img
-                    src="${post.user.profilePicture.src}"
-                    alt="${post.user.profilePicture}"
+                    src="${post.user.userprofile ? post.user.userprofile.picture ? post.user.userprofile.picture : '/static/pictures/character.jpg' : '/static/pictures/character.jpg'}"
+                    alt="${post.user.userprofile ? post.user.userprofile.picture ? post.user.userprofile.picture : '/static/pictures/character.jpg' : '/static/pictures/character.jpg'}"
                     class="w-100 h-100 rounded-circle"
                 />
             </div>
             <div class="d-flex flex-column">
-                <span class="fw-bold">${post.user.firstName} ${post.user.lastName}</span
+                <span class="fw-bold">${post.user.first_name} ${post.user.last_name}</span
                 ><span class="small">@${post.user.username}</span>
             </div>
             <div class="text-muted align-self-end text-end flex-grow-1">${timedifference}</div>
@@ -75,11 +100,19 @@ function setAlldata(data) {
         <div id="post-image${index}" class="post-image w-100 square-container-w100">
             
         </div>
-        <div class="reactions w-100 d-flex gap-3" onclick="likePost(${post.pk})">
-            <div class="like">
+        <p
+        id="post-${index}"
+        data-role="post"
+        class="post-caption m-0 p-0 small"
+        data-truncated
+        >
+            ${post.caption}
+        </p>
+        <div class="reactions w-100 d-flex gap-3">
+            <div class="like" onclick="likePost(${post.id}, ${index})">
                 <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-100"
+                class="w-100 ${isLiked ? 'd-none' : ''}"
                 fill="currentColor"
                 data-role="liked-post-svg"
                 data-is-liked="unliked"
@@ -93,7 +126,7 @@ function setAlldata(data) {
                 </svg>
                 <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-100 text-danger d-none"
+                class="w-100 text-danger ${isLiked ? '' : 'd-none'}"
                 fill="currentColor"
                 data-role="liked-post-svg"
                 data-is-liked="liked"
@@ -133,14 +166,6 @@ function setAlldata(data) {
                 />
             </svg>
         </div>
-        <p
-        id="post-${index}"
-        data-role="post"
-        class="post-caption m-0 p-0 small"
-        data-truncated
-        >
-            ${post.caption}
-        </p>
         <span
         id="showMoreLess-${index}"
         class="small text-primary text-nowrap d-none"
@@ -149,7 +174,7 @@ function setAlldata(data) {
         >
     </div>
     <hr />`;
-    $("#home-page").append(postChild);
+    $("#postsContainer").append(postChild);
     let commentModal = `
     <div
       class="modal fade comments"
@@ -163,21 +188,21 @@ function setAlldata(data) {
       >
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5 fw-bold" id="serviceType2Label">
-              Comments
-            </h1>
+           <h1 class="modal-title fs-5 fw-bold" id="serviceType2Label">
+             Comments
+           </h1>
           </div>
           <div class="modal-body d-flex flex-column gap-2">
-            <div id="comment${index}" class="comment-content d-flex flex-column gap-2">
-              
+            <div id="comment${index}" class="comment-content d-flex flex-column gap-2 overflow-auto">
+           
             </div>
 
             <hr class="mt-3 mb-0" />
             <div class="mb-2 d-flex align-items-center gap-2">
               <div class="comment-profile-picture">
                 <img
-                  src="${post.user.profilePicture.src}"
-                  alt="${post.user.profilePicture}"
+                  src="${$("#profilePicture").val()}"
+                  alt="${$("#profilePicture").val()}"
                   class="rounded-circle"
                 />
               </div>
@@ -190,9 +215,9 @@ function setAlldata(data) {
                 />
               </div>
               <div
-                class="btn btn-primary d-flex justify-content-center align-items-center rounded-pill"
-                id="sendComment${index}"
-                onclick="sendComment(${index}, ${post.pk})"
+               class="btn btn-primary d-flex justify-content-center align-items-center rounded-pill"
+               id="sendComment${index}"
+               onclick="sendComment(${post.id}, ${index})"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -211,17 +236,17 @@ function setAlldata(data) {
       </div>
     </div>
     `;
-    $(body).append(commentModal);
-    if (post.pictures.length == 1) {
+    $('#commentsContainer').append(commentModal);
+    if (post.images.length == 1) {
       let postPicture = `
       <img
-          src="${post.pictures[0].src}"
-          alt="${post.picture[0]}"
+          src="${post.images[0].image}"
+          alt="${post.images[0].image}"
           class="square-image-w100"
       />
       `;
       $(`#post-image${index}`).append(postPicture);
-    } else {
+    } else if (post.images.length > 1) {
       let postPicturesCarousel = `
       <div id="post-carousel${index}" class="carousel slide square-image-w100">
         <div id="post-carousel-inner${index}" class="carousel-inner square-image-w100">
@@ -254,40 +279,23 @@ function setAlldata(data) {
       </div>
         `;
       $(`#post-image${index}`).append(postPicturesCarousel);
-      post.pictures.forEach((picture, i) => {
+      post.images.forEach((picture, i) => {
         let postPicture = `
         <div class="carousel-item square-image-w100 ${i == 0 ? "active" : ""}">
           <img
-            src="${picture.src}"
+            src="${picture.image}"
             class="d-block w-100 square-image-w100"
-            alt="${picture}"
+            alt="${picture.image}"
           />
         </div>
         `;
         $(`#post-carousel-inner${index}`).append(postPicture);
       });
+    } else {
+      $(`#post-image${index}`).addClass("d-none");
     }
     let comments = post.comments;
-    comments.forEach((comment) => {
-      let commentMessage = `
-        <div class="mb-2 d-flex gap-2">
-            <div class="comment-profile-picture">
-                <img
-                src="${comment.user.profilePicture.src}"
-                alt="${comment.user.profilePicture}"
-                class="rounded-circle"
-                />
-            </div>
-            <div class="d-flex flex-column">
-                <span class="fw-bold small">${comment.user.firstName} ${comment.user.lastName}</span>
-                <div class="small">
-                ${comment.message}
-                </div>
-            </div>
-        </div>
-        `;
-      $(`#comment${index}`).append(commentMessage);
-    });
+    setComments(comments, index);
     let repostModal = `
     <div
       class="modal fade"
@@ -311,18 +319,120 @@ function setAlldata(data) {
               >
                 Cancel
               </div>
-              <div id="repost${index}btn" onclick="rePost(${post.pk})" class="btn btn-primary px-4">Repost</div>
+              <div id="repost${index}btn" onclick="rePost(${post.id}, ${index})" class="btn btn-primary px-4">Repost</div>
             </div>
           </div>
         </div>
       </div>
     </div>
     `;
-    $(body).append(repostModal);
+    $('#repostsContainer').append(repostModal);
   });
 }
+function setServices() {
+  $.ajax({
+    url: "/api/get_services/",
+    method: "GET",
+    headers: {
+      "X-CSRFToken": getCSRFToken(),
+    },
+    data: {},
+    success: function (response) {
+      response.forEach(service => {
+        $("#notifications").append(`
+        <li>
+          <a
+            href="/company_order/${service.id}"
+            class="dropdown-item text-wrap"
+            data-notification-status="${service.is_accepted == null ? 'not-read' : 'read'}"
+          >
+            <span class="fw-bold">${service.order.user.first_name} ${service.order.user.last_name} </span>ask for delivery
+            of: ${service.order.weight}Kg of ${service.order.sub_material.name} - ${service.order.material.name}
+          </a>
+        </li>`);
+      });
+    },
+    error: function (xhr, status, error) {
+      // Handle errors
+      console.error("Error:", status, error);
+    },
+  });
+}
+function likePost(pk, index) {
+  $.ajax({
+    url: `/api/toggle_like/${pk}/`,
+    method: "POST",
+    headers: {
+      "X-CSRFToken": getCSRFToken(),
+    },
+    success: function (response) {
+      console.log(response);
+      $(`#liked-post-${index}`).toggleClass("d-none");
+      $(`#unliked-post-${index}`).toggleClass("d-none");
+    },
+    error: function (xhr, status, error) {
+      // Handle errors
+      console.error("Error:", status, error);
+    },
+  });
+}
+function sendComment(pk, index) {
+  let commentMessage = $(`#newComment${index}`).val();
+  if (commentMessage != '') {
+    $.ajax({
+      url: `/api/send_comment/${pk}/`,
+      method: "POST",
+      headers: {
+        "X-CSRFToken": getCSRFToken(),
+      },
+      data: { content: commentMessage },
+      success: function (response) {
+        console.log(response);
+        $(`#newComment${index}`).val("");
+        setComments(response, index);
+      },
+      error: function (xhr, status, error) {
+        // Handle errors
+        console.error("Error:", status, error);
+      },
+    });
+  }
+}
+function rePost(pk, index) {
+  $.ajax({
+    url: `/api/repost/${pk}/`,
+    method: "POST",
+    headers: {
+      "X-CSRFToken": getCSRFToken(),
+    },
+    success: function (response) {
+      console.log(response);
+      $(`#repost${index}`).modal("hide");
+      getAllData();
+    },
+    error: function (xhr, status, error) {
+      // Handle errors
+      console.error("Error:", status, error);
+    },
+  });
+}
+function hideCommentModal(index) {
+  window.addEventListener('popstate', function(event) {
+    event.preventDefault();
+    alert("test");
+    if (document.getElementById(`comments${index}`).style.display === 'block') {
+      // Close the modal
+      $(`#comments${index}`).modal("hide");
+      // Prevent the default behavior (returning to the previous page)
+      event.preventDefault();
+    }
+  });
+}
+
 $(document).ready(function () {
-  // setAlldata(getAllData()); reactivate this when API done
+  getAllData();
+  setServices();
+  hideCommentModal(0);
   let posts = $('[data-role="post"');
   if (posts) {
     let postsArr = $.map(posts, function (value, key) {
@@ -380,87 +490,44 @@ $(document).ready(function () {
   // new post
   $("#shareNewPostBtn").on("click", () => {
     let fileInput = $("#picsForPost")[0];
+    let formData = new FormData();
     if (fileInput.files.length >= 1) {
-      let formData = new FormData();
       for (let i = 0; i < fileInput.files.length; i++) {
-        formData.append("files[]", fileInput.files[i]);
+        formData.append("pictures", fileInput.files[i]);
       }
-      let caption = $("#newPostCaption").val();
-      let data = {
-        caption: caption,
-      };
-      for (let key in data) {
-        if (data.hasOwnProperty(key)) {
-          formData.append(key, data[key]);
-        }
+    }
+    let caption = $("#newPostCaption").val();
+    let data = {
+      caption: caption,
+    };
+    for (let key in data) {
+      if (data.hasOwnProperty(key)) {
+        formData.append(key, data[key]);
       }
-      $.ajax({
-        url: "your_backend_endpoint",
-        method: "POST",
-        headers: {
-          "X-CSRFToken": getCSRFToken(),
-        },
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-          console.log(response);
-        },
-        error: function (xhr, status, error) {
-          // Handle errors
-          console.error("Error:", status, error);
-        },
-      });
+    }
+    $.ajax({
+      url: "/share_post/",
+      method: "POST",
+      headers: {
+        "X-CSRFToken": getCSRFToken(),
+      },
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        getAllData();
+      },
+      error: function (xhr, status, error) {
+        // Handle errors
+        console.error("Error:", status, error);
+      },
+    });
+  });
+  let scrollableDiv = document.getElementById("postsContainer");
+  window.addEventListener('scroll', function() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      // getAllData(refresh=false);
+      // uncomment it when after updating api 
     }
   });
-  function likePost(pk) {
-    $.ajax({
-      url: "your_backend_endpoint", // use pk parameter in endpoint
-      method: "POST",
-      headers: {
-        "X-CSRFToken": getCSRFToken(),
-      },
-      success: function (response) {
-        console.log(response);
-      },
-      error: function (xhr, status, error) {
-        // Handle errors
-        console.error("Error:", status, error);
-      },
-    });
-  }
-  function sendComment(index, pk) {
-    let commentMessage = $(`#newComment${index}`).val();
-    $.ajax({
-      url: "your_backend_endpoint", // use pk parameter in endpoint
-      method: "POST",
-      headers: {
-        "X-CSRFToken": getCSRFToken(),
-      },
-      data: { message: commentMessage },
-      success: function (response) {
-        console.log(response);
-      },
-      error: function (xhr, status, error) {
-        // Handle errors
-        console.error("Error:", status, error);
-      },
-    });
-  }
-  function rePost(pk) {
-    $.ajax({
-      url: "your_backend_endpoint", // use pk parameter in endpoint
-      method: "POST",
-      headers: {
-        "X-CSRFToken": getCSRFToken(),
-      },
-      success: function (response) {
-        console.log(response);
-      },
-      error: function (xhr, status, error) {
-        // Handle errors
-        console.error("Error:", status, error);
-      },
-    });
-  }
 });

@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.gis.db import models as gis_models
 
 
 class MaterialType(models.Model):
@@ -36,7 +35,7 @@ class ServiceDetails(models.Model):
     material_subtype = models.ForeignKey(
         MaterialSubType, on_delete=models.CASCADE)
     weight = models.FloatField(blank=True, null=True)
-    location = gis_models.PointField(blank=True, null=True)
+    location = models.CharField(blank=True, null=True)
     note = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -50,7 +49,7 @@ class TempServiceDetails(models.Model):
     material_subtype = models.ForeignKey(
         MaterialSubType, on_delete=models.CASCADE)
     weight = models.FloatField(blank=True, null=True)
-    location = gis_models.PointField(blank=True, null=True)
+    location = models.CharField(blank=True, null=True)
     note = models.TextField(blank=True, null=True)
 
     def __str__(self):

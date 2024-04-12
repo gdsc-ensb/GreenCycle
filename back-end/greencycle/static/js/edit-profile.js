@@ -1,53 +1,4 @@
-// edit profile
-function getAllData() {
-  let AllData;
-  $.ajax({
-    url: "your_backend_endpoint",
-    method: "GET",
-    headers: {
-      "X-CSRFToken": getCSRFToken(),
-    },
-    data: {},
-    success: function (response) {
-      AllData = response.data;
-    },
-    error: function (xhr, status, error) {
-      // Handle errors
-      console.error("Error:", status, error);
-    },
-  });
-  return AllData;
-}
-function setAlldata(data) {
-  $("#profile-picture").attr("src", data.profile.profilePicture.src);
-  $("#current-fullname1").text(
-    data.profile.firstName + " " + data.profile.lastName
-  );
-  $("#current-fullname2").text(
-    data.profile.firstName + " " + data.profile.lastName
-  );
-  $("#main-username1").text(data.profile.username);
-  $("#bioEdit").text(data.profile.bio);
-  $("#info-email").text(data.profile.email);
-  $("#current-phone").text(data.profile.phone);
-  $("#current-birthdate").text(data.profile.birthdate);
-  $("#current-address").text(data.profile.address);
-  let loggedIns = data.loggedIns;
-  loggedIns.forEach((element) => {
-    let loggedInChild = `
-    <div class="d-flex flex-column">
-      <div class="d-flex justify-content-between">
-        <span>${element.name}</span>
-        <span>${element.place}</span>
-      </div>
-      <div class="align-self-end small">${element.date}</div>
-    </div>
-    <hr class="m-0 p-0" />`;
-    $("#logged-in").append(loggedInChild);
-  });
-}
 $(document).ready(function () {
-  // setAlldata(getAllData()); reactivate this when API done
   let newFirstName, newLastName, newPhone, newBirthdate, newAddress;
   function enableSaveBtn() {
     $("#save-changes-btn").attr("disabled", false);
@@ -100,7 +51,7 @@ $(document).ready(function () {
   });
   $("#logout-all").on("click", () => {
     $.ajax({
-      url: "your_backend_endpoint",
+      url: "/api/logout_all/",
       method: "POST",
       headers: {
         "X-CSRFToken": getCSRFToken(),
@@ -114,15 +65,18 @@ $(document).ready(function () {
       },
     });
   });
+  $("#confirm-logout-btn").on("click", () => {
+    window.location.href = "/";
+  });
   $("#confirm-changes-btn").on("click", () => {
-    window.location.href = "./profile.html";
+    window.location.href = "/profile/";
   });
   $("#save-changes-btn").on("click", () => {
     let fileInput = $("#edit-profile-picture-input")[0];
     let formData = new FormData();
     if (fileInput.files.length == 1) {
       for (let i = 0; i < fileInput.files.length; i++) {
-        formData.append("files[]", fileInput.files[i]);
+        formData.append("profilePicture", fileInput.files[i]);
       }
     }
     let data = {
@@ -132,6 +86,7 @@ $(document).ready(function () {
       phone: newPhone,
       birthdate: newBirthdate,
       address: newAddress,
+      updateDataBtn: true,
     };
     for (let key in data) {
       if (data.hasOwnProperty(key)) {
@@ -139,7 +94,7 @@ $(document).ready(function () {
       }
     }
     $.ajax({
-      url: "your_backend_endpoint",
+      url: "/api/update_userprofile/",
       method: "POST",
       headers: {
         "X-CSRFToken": getCSRFToken(),
@@ -157,15 +112,14 @@ $(document).ready(function () {
     });
   });
   $("#confirm-desactivate-btn").on("click", () => {
-    window.location.href = "./index.html";
     $.ajax({
-      url: "your_backend_endpoint",
+      url: "/api/desactivate_account/",
       method: "POST",
       headers: {
         "X-CSRFToken": getCSRFToken(),
       },
       success: function (response) {
-        window.location.href = "./index.html";
+        window.location.href = "/";
       },
       error: function (xhr, status, error) {
         // Handle errors
@@ -174,15 +128,14 @@ $(document).ready(function () {
     });
   });
   $("#confirm-remove-btn").on("click", () => {
-    window.location.href = "./index.html";
     $.ajax({
-      url: "your_backend_endpoint",
+      url: "/api/delete_account/",
       method: "POST",
       headers: {
         "X-CSRFToken": getCSRFToken(),
       },
       success: function (response) {
-        window.location.href = "./index.html";
+        window.location.href = "/";
       },
       error: function (xhr, status, error) {
         // Handle errors

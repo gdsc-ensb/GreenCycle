@@ -15,7 +15,7 @@ import requests
 from datetime import datetime, timedelta
 from accounts.models import LoginActivity, UserProfile, ResetPasswordOTP, Company
 from accounts.serializers import UserDataSerializer, CompanySerializer
-from .serializers import PostSerializer, MaterialSerializer, DeliveryOrderSerializer, CompanyOrderSerializer
+from .serializers import PostSerializer, MaterialSerializer, DeliveryOrderSerializer, CompanyOrderSerializer, CommentSerializer
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
@@ -27,7 +27,7 @@ from . import models
 
 def get_wilaya_from_coordinates(latitude, longitude):
     # Make a reverse geocoding request to the chosen service
-    url = f'https://maps.googleapis.com/maps/api/geocode/json?latlng={latitude},{longitude}&key=YourGoogleMapsApiKey'
+    url = f'https://maps.googleapis.com/maps/api/geocode/json?latlng={latitude},{longitude}&key=putApiKey'
     response = requests.get(url)
     data = response.json()
 
@@ -142,8 +142,15 @@ def change_password(request):
 
 def home(request):
     if request.user.is_authenticated:
-        if request.user.userprofile:
-            return render(request, 'pages/home.html')
+        try:
+            if request.user.userprofile:
+                return render(request, 'pages/home.html')
+        except:
+            try:
+                if request.user.company:
+                    return render(request, 'pages/home.html')
+            except:
+                pass
     return redirect('index')
 
 
@@ -217,18 +224,24 @@ def update_user_data(request):
     bio = None
     message = ""
     code = -1
+    res_status = status.HTTP_200_OK
 
     if request.method == "POST" and 'updateDataBtn' in request.POST:
         if 'firstName' in request.POST:
-            firstName = request.POST['firstName']
+            if request.POST['firstName'] != "undefined":
+                firstName = request.POST['firstName']
         if 'lastName' in request.POST:
-            lastName = request.POST['lastName']
+            if request.POST['lastName'] != "undefined":
+                lastName = request.POST['lastName']
         if 'phone' in request.POST:
-            phone = request.POST['phone']
+            if request.POST['phone'] != "undefined":
+                phone = request.POST['phone']
         if 'address' in request.POST:
-            address = request.POST['address']
+            if request.POST['address'] != "undefined":
+                address = request.POST['address']
         if 'birthdate' in request.POST:
-            birthdate = request.POST['birthdate']
+            if request.POST['birthdate'] != "undefined":
+                birthdate = request.POST['birthdate']
         if 'bio' in request.POST:
             bio = request.POST['bio']
         if 'profilePicture' in request.FILES:
@@ -239,33 +252,35 @@ def update_user_data(request):
             user = request.user
             if hasattr(user, 'userprofile'):
                 profile = user.userprofile
-                if firstName is not None:
-                    user.first_name = firstName
-                if lastName is not None:
-                    user.last_name = lastName
-                if phone is not None:
-                    profile.phone_number = phone
-                if address is not None:
-                    profile.address = address
-                if birthdate is not None:
-                    profile.birth_date = birthdate
-                if bio is not None:
-                    profile.bio = bio
-                if profilePicture is not None:
-                    profile.picture.save(
-                        profilePicture.name, profilePicture, save=True)
-                user.save()
-                profile.save()
-                message = "User data updated successfully"
-                code = 1
             else:
-                message = "User has no user profile"
+                profile = UserProfile.objects.create(user=user)
+            if firstName is not None:
+                user.first_name = firstName
+            if lastName is not None:
+                user.last_name = lastName
+            if phone is not None:
+                profile.phone_number = phone
+            if address is not None:
+                profile.address = address
+            if birthdate is not None:
+                profile.birth_date = birthdate
+            if bio is not None:
+                profile.bio = bio
+            if profilePicture is not None:
+                profile.picture.save(
+                    profilePicture.name, profilePicture, save=True)
+            user.save()
+            profile.save()
+            message = "User data updated successfully"
+            code = 1
         else:
             message = "Please login to perform this action."
+            res_status = status.HTTP_401_UNAUTHORIZED
     else:
         message = "Please fill out all fields."
+        res_status = status.HTTP_406_NOT_ACCEPTABLE
 
-    return JsonResponse({'message': message, 'code': code})
+    return JsonResponse({'message': message, 'code': code}, status=res_status)
 
 
 def logout_all(request):
@@ -412,18 +427,17 @@ def share_post(request):
             pictures = request.FILES.getlist('pictures')
     if caption is not None:
         if request.user.is_authenticated:
-            if request.user.userprofile:
-                user = request.user
-                post = models.Post(
-                    user=user,
-                    caption=caption
-                )
-                post.save()
-                if pictures is not None:
-                    for picture in pictures:
-                        post_image = models.PostImage(post=post, image=picture)
-                        post_image.save()
-                return JsonResponse({'message': "post shared"}, status=status.HTTP_201_CREATED)
+            user = request.user
+            post = models.Post(
+                user=user,
+                caption=caption
+            )
+            post.save()
+            if pictures is not None:
+                for picture in pictures:
+                    post_image = models.PostImage(post=post, image=picture)
+                    post_image.save()
+            return JsonResponse({'message': "post shared"}, status=status.HTTP_201_CREATED)
     return JsonResponse({'message': "data is not enogh"}, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -467,7 +481,9 @@ def send_comment(request, post_id):
         if content is not None and post is not None:
             comment = models.Comment(user=user, post=post, content=content)
             comment.save()
-            return JsonResponse({'message': 'comment added'})
+            posts_comments = models.Comment.objects.filter(post=post)
+            comment_serializer = CommentSerializer(posts_comments, many=True)
+            return JsonResponse(comment_serializer.data, safe=False)
         return JsonResponse({'error': 'Comment is not provided.'}, status=400)
     else:
         return JsonResponse({'error': 'User is not authenticated.'}, status=401)
@@ -654,5 +670,5 @@ class getUserHistory(APIView):
 
     def get(self, request):
         orders = models.DeliveryOrder.objects.filter(
-            user=self.request.user)
+            user=self.request.user).order_by('-modified')
         return Response(DeliveryOrderSerializer(orders, many=True).data, status=status.HTTP_200_OK)

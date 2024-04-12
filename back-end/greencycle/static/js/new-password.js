@@ -1,7 +1,7 @@
 // new password
 $(document).ready(function () {
   $("#confirm-password-change-done-btn").on("click", () => {
-    window.location.href = "./home.html";
+    window.location.href = "/home/";
   });
   $("#update-password").on("click", () => {
     let data;
@@ -11,7 +11,7 @@ $(document).ready(function () {
       data = { newPassword: newPassword };
     }
     $.ajax({
-      url: "your_backend_endpoint",
+      url: "/api/update_password/",
       method: "POST",
       headers: {
         "X-CSRFToken": getCSRFToken(),

@@ -1,13 +1,15 @@
 $(document).ready(function () {
   $("#sendOTP").on("click", () => {
     $.ajax({
-      url: "your_backend_endpoint",
+      url: "/api/send_otp/",
       method: "POST",
       headers: {
         "X-CSRFToken": getCSRFToken(),
       },
+      data: {email: $("#reset-password-email").val()},
       success: function (response) {
-        window.location.href = "./confirm-mail.html";
+        $("#user_id").val(response.user_id);
+        $("#otpForm").submit();
       },
       error: function (xhr, status, error) {
         // Handle errors

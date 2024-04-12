@@ -53,6 +53,14 @@ open the file **'settings.py'** in your text editor
 path of file: ..../GreenCycle/back-end/greencycle/settings.py
 ```
 change the username and password in the database settings (line 96-97) to your username and password.
+open the file **'base.html'** in your text editor
+```bash
+path of file: ..../GreenCycle/back-end/templates/base.html
+```
+put you JS Google Maps API Key in the line 17
+
+### Installing Dependencies:
+
 - **Create Virtual Environment:**
 run following commands:
 ```bash
@@ -70,12 +78,28 @@ $ python manage.py makemigrations
 $ python manage.py migrate
 ```
 
-### Starting Server:
+- ### Creating Superuser:
+run following commands:
+```bash
+$ python manage.py createsuperuser
+```
+then follow the instructions to create a superuser.
+
+
+- ### Starting Server:
 run following commands:
 ```bash
 $ .\venv_name\Scripts\activate
 $ python manage.py runserver
 ```
+
+### Note for use:
+- The server will start at http://127.0.0.1:8000/
+- you should remember your Id from the profile page after creating an account to use it in login.
+- you should create at least one company account to use the website.
+- you should create at least one material and one sub_material from the admin panel to use the website.
+- you can access the admin panel at http://127.0.0.1:8000/admin/
+
 
 ### Developed by:
 

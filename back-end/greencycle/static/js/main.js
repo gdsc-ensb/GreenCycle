@@ -73,17 +73,16 @@ function selectPics(type) {
     let picturesToAdd;
     if (selectedPictures.length > 0) {
       if (
-        $(`#picsFor${type}Container`).children().length +
-          selectedPictures.length >
-        10
+        $(`#picsFor${type}Container`).children().length > 10
       ) {
         picturesToAdd = selectedPicturesArr.slice(
           0,
-          10 - $(`#picsFor${type}Container`).children().length
+          10
         );
       } else {
         picturesToAdd = selectedPicturesArr;
       }
+      $(`#picsFor${type}Container`).html("");
       picturesToAdd.forEach((picture) => {
         let file = picture.value;
         if (file.type && file.type.indexOf("image") !== -1) {
@@ -122,23 +121,6 @@ function selectPics(type) {
 $("#joinourcommunity").on("click", () => {
   window.location.href = "/signup/";
 });
-// logout
-function logout() {
-  $.ajax({
-    url: "your_backend_endpoint",
-    method: "POST",
-    headers: {
-      "X-CSRFToken": getCSRFToken(),
-    },
-    success: function (response) {
-      window.location.href = "./index.html";
-    },
-    error: function (xhr, status, error) {
-      // Handle errors
-      console.error("Error:", status, error);
-    },
-  });
-}
 
 // js errors
 function errorCheck(

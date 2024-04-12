@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # libraries
     'phonenumber_field',
-    'django.contrib.gis',
     'rest_framework',
     # applications
     'accounts.apps.AccountsConfig',
@@ -91,7 +90,7 @@ WSGI_APPLICATION = 'greencycle.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'greencycledb',
         'USER': 'your_username',
         'PASSWORD': 'your_password',

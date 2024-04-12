@@ -39,7 +39,6 @@ if (inputs) {
     }
   });
   let confirmCodeBtn = $("#confirm-code-btn");
-  let confirmDoneBtn = $("#confirm-mail-done-btn");
   confirmCodeBtn.on("click", () => {
     let otpCode;
     let otpInput1 = $("#otp-input-1").val();
@@ -54,26 +53,25 @@ if (inputs) {
     ) {
       otpCode = parseInt(otpInput1 + otpInput2 + otpInput3 + otpInput4);
     }
+    let data = {
+      'user_otp': otpCode,
+      'userID': $("#userID").val()
+    }
     $.ajax({
-      url: "your_backend_endpoint",
+      url: "/api/verify_otp/",
       method: "POST",
       headers: {
         "X-CSRFToken": getCSRFToken(),
       },
-      data: { user_otp: otpCode },
-      processData: false,
-      contentType: false,
+      data: data,
       success: function (response) {
-        $("#emailConfirmed").modal("show");
+        window.location.href = '/change_password/';
       },
       error: function (xhr, status, error) {
         // Handle errors
         console.error("Error:", status, error);
       },
     });
-  });
-  confirmDoneBtn.on("click", () => {
-    window.location.href = "./home.html";
   });
   let otpInputs = $('[data-role="otp-input"]');
   let isFilled = [false, false, false, false];

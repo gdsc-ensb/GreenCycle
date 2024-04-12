@@ -1,6 +1,7 @@
 {% extends 'base.html' %}{% load static %} {% block title %}Manage Order{% endblock %}{% block side_navbar %}{% include 'parts/_side_navbar.html' %}{% endblock %} {% block content %} {% include 'parts/_logo_nav_side.html' %}
 <div class="d-flex flex-column mt-3 w-100 gap-2">
   <h2 class="h2 fw-bold m-0">Service:</h2>
+  <input value="{{ company_order.id }}" class="d-none" id="current_order"/>
   <div id="service-images">
     {% comment %} <div id="serviceCarousel" class="carousel slide">
       <div class="carousel-inner">
@@ -287,6 +288,5 @@
 {% endblock %}
 {% block custom_js %}
 <script src="{% static './js/accounts.js' %}"></script>
-<script src="{% static './js/map.js' %}"></script>
 <script src="{% static './js/service.js' %}"></script>
 {% endblock %}
