@@ -52,7 +52,7 @@ ALTER ROLE your_username SET timezone TO 'UTC';
   ```bash
   path of file: ..../GreenCycle/back-end/greencycle/settings.py
   ```
-  change the username and password in the database settings (line 96-97) to your username and password.
+  change the username and password in the database settings (line 95-96) to your username and password.
   - open the file **'base.html'** in your text editor
   ```bash
   path of file: ..../GreenCycle/back-end/templates/base.html
@@ -89,7 +89,7 @@ then follow the instructions to create a superuser.
 - ### Starting Server:
 run following commands:
 ```bash
-$ .\venv_name\Scripts\activate
+$ .\greencyclevenv\Scripts\activate
 $ python manage.py runserver
 ```
 
